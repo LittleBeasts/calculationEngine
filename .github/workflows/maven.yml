@@ -31,6 +31,6 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: Release.txt
+        files: calculationEngine
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
