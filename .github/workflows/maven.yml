@@ -32,8 +32,8 @@ jobs:
       id: bump_version
       uses: christian-draeger/increment-semantic-version@1.0.2
       with:
-        current-version: '0.0.0-Snapshot1'
-        version-fragment: 'feature'
+        current-version: '0.0.0-alpha1'
+        version-fragment: 'Major'
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
