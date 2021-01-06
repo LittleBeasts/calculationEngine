@@ -30,7 +30,8 @@ jobs:
         path: builds
     - name: Release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: calculationEngine
+        files: builds/calculationEngine
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
