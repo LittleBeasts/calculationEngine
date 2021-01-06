@@ -5,9 +5,11 @@ name: Maven Build for all Branches
 
 on:
   push:
-    branches-ignore: [master]
+    branches-ignore:
+      - 'master'
   pull_request:
-    branches-ignore: []
+    branches:
+      - '*'
 
 jobs:
   build:
