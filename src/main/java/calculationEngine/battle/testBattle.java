@@ -68,6 +68,5 @@ public class testBattle {
         }
         System.out.println("End of fight");
         CeExecuterService.shutdownExecutor();
-
     }
 }
