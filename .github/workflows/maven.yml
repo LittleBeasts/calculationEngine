@@ -24,8 +24,8 @@ jobs:
       id: bump_version
       uses: christian-draeger/increment-semantic-version@1.0.2
       with:
-        current-version: '0.0.0-alpha1'
-        version-fragment: 'major'
+        current-version: '1.0.0-alpha1'
+        version-fragment: 'bug'
     - name: Upload Artifacts
       run: mkdir builds && cp target/*.jar builds/calculationEngine-${{ steps.bump_version.outputs.next-version }}.jar
     - uses: actions/upload-artifact@v2
