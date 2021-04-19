@@ -80,4 +80,18 @@ public class CeItem {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public String toString() {
+        return "CeItem{" +
+                "name='" + name + '\'' +
+                ", spriteName='" + spriteName + '\'' +
+                ", equipped=" + equipped +
+                ", unique=" + unique +
+                ", type=" + type +
+                ", uses=" + uses +
+                ", itemBonusStats=" + itemBonusStats.toString() +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

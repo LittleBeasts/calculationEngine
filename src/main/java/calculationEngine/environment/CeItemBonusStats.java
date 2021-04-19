@@ -47,4 +47,17 @@ public class CeItemBonusStats {
     public int getCatchBonus() {
         return catchBonus;
     }
+
+    @Override
+    public String toString() {
+        return "CeItemBonusStats{" +
+                "healthPoints=" + healthPoints +
+                ", speed=" + speed +
+                ", stamina=" + stamina +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", critBonus=" + critBonus +
+                ", catchBonus=" + catchBonus +
+                '}';
+    }
 }
