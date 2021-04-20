@@ -3,6 +3,7 @@ package calculationEngine.battle;
 import calculationEngine.CeExecuterService;
 import calculationEngine.entities.*;
 import calculationEngine.environment.CeItem;
+import calculationEngine.environment.CeLoot;
 import config.BattleConstants;
 
 import java.util.Random;
@@ -104,8 +105,8 @@ public class CeBattle implements Runnable {
         boolean caught = false;
         if (turnPlayer1) {
             turnPlayer1 = false;
-            CeItem item = new CeItem(1);
-            caught = CeCatching.isCaught(cePlayer1, selectedFightEntityPlayer2, new CeItem(0));
+            // CeItem item = new CeItem(1); // Replace with Inventory Use of Cage
+            caught = CeCatching.isCaught(cePlayer1, selectedFightEntityPlayer2, CeLoot.lootItem("cage")); // Replace with Inventory use of Cage
             if (caught) setBattleEnd();
             setActionDone();
         }

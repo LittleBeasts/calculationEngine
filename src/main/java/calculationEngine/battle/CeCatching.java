@@ -42,7 +42,7 @@ public class CeCatching {
         int baseDifficultly = (beast.getCeStats().getCurrentHitPoints() * 100) / (beast.getCeStats().getMaxHitPoints());
         double levelModifier = (double) player.getCeStats().getLevel() / beast.getCeStats().getLevel();
         int speed = (int) (player.getCeStats().getSpeed() * levelModifier);
-        int difficulty = baseDifficultly + beast.getCeStats().getSpeed() - (speed + ceAttack.getAccuracy() + cage.getBonus());
+        int difficulty = baseDifficultly + beast.getCeStats().getSpeed() - (speed + ceAttack.getAccuracy() + cage.getItemBonusStats().getCatchBonus());
         debugInfo += "Difficulty: " + difficulty + "\n";
         // if difficulty is higher than the roll the attack will miss.
         return difficulty > attackRoll;

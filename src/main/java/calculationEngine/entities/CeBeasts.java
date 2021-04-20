@@ -4,8 +4,8 @@ import calculationEngine.environment.CeRegions;
 
 public enum CeBeasts {
 
-    FeuerFurz(CeBeastTypes.Fire, 100, 25, 25, 25, 25, 25, 25, 25, 25, 25, 15, "StinkenderFeuerFurz", CeRegions.ArkhamCity),
-    StinkenderFeuerFurz(CeBeastTypes.Fire, 100, 25, 25, 25, 25, 25, 25, 25, 25, 25, Integer.MAX_VALUE, "", CeRegions.ArkhamCity);
+    FeuerFurz(CeBeastTypes.Fire, 100, 25, 25, 25, 25, 25, 25, 25, 25, 25, 15, "StinkenderFeuerFurz", CeRegions.ArkhamCity, "sprites/icon.png"),
+    StinkenderFeuerFurz(CeBeastTypes.Fire, 100, 25, 25, 25, 25, 25, 25, 25, 25, 25, Integer.MAX_VALUE, "", CeRegions.ArkhamCity, "sprites/icon.png");
 
 
     private final CeBeastTypes type;
@@ -22,8 +22,9 @@ public enum CeBeasts {
     private final int evolutionlvl; // Level at which development will take place
     private final String evolutionId; // ID of development of beast
     private final CeRegions region;
+    private final String portrait;
 
-    CeBeasts(CeBeastTypes type, int baseHp, int baseAttack, int baseDefense, int baseSpeed, int baseStamina, int hpLvlScaling, int attackLvlScaling, int defenseLvlScaling, int speedLvlScaling, int staminaLvlScaling, int developmentlvl, String developmentId, CeRegions region) {
+    CeBeasts(CeBeastTypes type, int baseHp, int baseAttack, int baseDefense, int baseSpeed, int baseStamina, int hpLvlScaling, int attackLvlScaling, int defenseLvlScaling, int speedLvlScaling, int staminaLvlScaling, int developmentlvl, String developmentId, CeRegions region, String portrait) {
         this.type = type;
         this.baseHp = baseHp;
         this.baseAttack = baseAttack;
@@ -38,6 +39,7 @@ public enum CeBeasts {
         this.evolutionId = developmentId;
         this.evolutionlvl = developmentlvl;
         this.region = region;
+        this.portrait = portrait;
     }
 
     public static CeBeasts getBeast(String name) {
@@ -98,5 +100,9 @@ public enum CeBeasts {
 
     public String getEvolutionId() {
         return evolutionId;
+    }
+
+    public String getPortrait() {
+        return portrait;
     }
 }
