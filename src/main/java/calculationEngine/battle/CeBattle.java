@@ -3,6 +3,7 @@ package calculationEngine.battle;
 import calculationEngine.CeExecuterService;
 import calculationEngine.entities.*;
 import calculationEngine.environment.CeItem;
+import calculationEngine.environment.CeItemTypes;
 import calculationEngine.environment.CeLoot;
 import config.BattleConstants;
 
@@ -105,7 +106,7 @@ public class CeBattle implements Runnable {
         boolean caught = false;
         if (turnPlayer1) {
             turnPlayer1 = false;
-            if(item.getName().equals("Cage")) {
+            if(item.getType() == CeItemTypes.cage) {
                 this.cePlayer1.getInventory().useItem(item); // Currently there is only one Cage option.. will need a system to decide what kind of item it is
                 caught = CeCatching.isCaught(cePlayer1, selectedFightEntityPlayer2, item); // Replace with Inventory use of Cage
                 if (caught) setBattleEnd();

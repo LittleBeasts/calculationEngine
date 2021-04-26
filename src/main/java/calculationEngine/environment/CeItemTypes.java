@@ -8,6 +8,7 @@ public enum CeItemTypes {
     armorLegs,
     armorChest,
     armorHead,
+    cage,
     weapon
 
 
