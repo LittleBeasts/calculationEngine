@@ -1,25 +1,27 @@
 package calculationEngine.entities;
 
+import calculationEngine.battle.WrongItemException;
 import calculationEngine.environment.CeItem;
+import calculationEngine.environment.CeItemTypes;
 
 public class CeInventory {
 
-    CeItem armorShoulder;
-    CeItem armorShoes;
-    CeItem armorLegs;
-    CeItem armorChest;
-    CeItem armorHead;
-    CeItem weapon;
+    CeItem equippedArmorShoulder;
+    CeItem equippedArmorShoes;
+    CeItem equippedArmorLegs;
+    CeItem equippedArmorChest;
+    CeItem equippedArmorHead;
+    CeItem equippedWeapon;
 
     CeSlots[] slots = new CeSlots[10];
 
     public void loadSaveInventory(CeItem armorShoulder, CeItem armorShoes, CeItem armorLegs, CeItem armorChest, CeItem armorHead, CeItem weapon, CeSlots[] slots) {
-        this.armorChest = armorChest;
+        this.equippedArmorChest = armorChest;
         this.slots = slots;
-        this.armorHead = armorHead;
-        this.armorLegs = armorLegs;
-        this.armorShoes = armorShoes;
-        this.armorShoulder = armorShoulder;
+        this.equippedArmorHead = armorHead;
+        this.equippedArmorLegs = armorLegs;
+        this.equippedArmorShoes = armorShoes;
+        this.equippedArmorShoulder = armorShoulder;
     }
 
     public CeInventory(){
@@ -65,28 +67,58 @@ public class CeInventory {
         if (!matchingItem) throw new ItemNotInInventoryException(item);
     }
 
-    public CeItem getArmorShoulder() {
-        return armorShoulder;
+    public void setEquippedArmorShoulder(CeItem equippedArmorShoulder) throws WrongItemException {
+        if(equippedArmorShoulder.getType() == CeItemTypes.armorShoulder) this.equippedArmorShoulder = equippedArmorShoulder;
+        else throw new WrongItemException(equippedArmorShoulder, "Armor type shoulderArmor");
     }
 
-    public CeItem getArmorShoes() {
-        return armorShoes;
+    public void setEquippedArmorShoes(CeItem equippedArmorShoes) throws WrongItemException {
+        if(equippedArmorShoes.getType() == CeItemTypes.armorShoes) this.equippedArmorShoes = equippedArmorShoes;
+        else throw new WrongItemException(equippedArmorShoes, "Armor type armorShoes");
     }
 
-    public CeItem getArmorLegs() {
-        return armorLegs;
+    public void setEquippedArmorLegs(CeItem equippedArmorLegs) throws WrongItemException {
+        if(equippedArmorLegs.getType() == CeItemTypes.armorLegs) this.equippedArmorLegs = equippedArmorLegs;
+        else throw new WrongItemException(equippedArmorLegs, "Armor type ArmorLegs");
     }
 
-    public CeItem getArmorChest() {
-        return armorChest;
+    public void setEquippedArmorChest(CeItem equippedArmorChest) throws WrongItemException {
+        if(equippedArmorChest.getType() == CeItemTypes.armorChest) this.equippedArmorChest = equippedArmorChest;
+        else throw new WrongItemException(equippedArmorChest, "Armor type ArmorChest");
     }
 
-    public CeItem getArmorHead() {
-        return armorHead;
+    public void setEquippedArmorHead(CeItem equippedArmorHead) throws WrongItemException {
+        if(equippedArmorHead.getType() == CeItemTypes.armorHead) this.equippedArmorHead = equippedArmorHead;
+        else throw new WrongItemException(equippedArmorHead, "Armor type armorHead");
     }
 
-    public CeItem getWeapon() {
-        return weapon;
+    public void setEquippedWeapon(CeItem equippedWeapon) throws WrongItemException {
+        if(equippedWeapon.getType() == CeItemTypes.weapon) this.equippedWeapon = equippedWeapon;
+        else throw new WrongItemException(equippedWeapon, "Armor type weapon");
+    }
+
+    public CeItem getEquippedArmorShoulder() {
+        return equippedArmorShoulder;
+    }
+
+    public CeItem getEquippedArmorShoes() {
+        return equippedArmorShoes;
+    }
+
+    public CeItem getEquippedArmorLegs() {
+        return equippedArmorLegs;
+    }
+
+    public CeItem getEquippedArmorChest() {
+        return equippedArmorChest;
+    }
+
+    public CeItem getEquippedArmorHead() {
+        return equippedArmorHead;
+    }
+
+    public CeItem getEquippedWeapon() {
+        return equippedWeapon;
     }
 
     public CeSlots[] getSlots() {
