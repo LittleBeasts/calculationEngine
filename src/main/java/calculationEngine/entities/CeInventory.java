@@ -54,6 +54,8 @@ public class CeInventory {
     public void useItem(CeItem item) throws Exception {
         boolean matchingItem = false;
 
+        // maybe add exception for type cage
+
         for (CeSlots slot : slots) {
             if (slot.getItem().compareTo(item)) {
                 matchingItem = true;

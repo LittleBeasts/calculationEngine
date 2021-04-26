@@ -8,7 +8,7 @@
     "uses": 1,
     "effects": "Catch",
     "unique": false,
-    "type": "consumable",
+    "type": "cage",
     "bonusStats":[
       10,
       10,
