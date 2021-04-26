@@ -35,11 +35,11 @@ public class CeAi extends CePlayer implements Runnable {
     public void run() {
         this.currentMonster = this.getTeam().get(0);
         while (battle.isFightOngoing()) {
-            System.out.println(battle.isFightOngoing());
-            System.out.println("running");
+//            System.out.println(battle.isFightOngoing());
+//            System.out.println("running");
             if (battle.getTurn() != null) {
                 if (battle.getTurn().getNumber() == this.getNumber()) {
-                    System.out.println("Turn of AI");
+//                    System.out.println("Turn of AI");
                     battle.useAttack(pickAttack());
                 }
             } else break;
@@ -49,7 +49,7 @@ public class CeAi extends CePlayer implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("End of AI Thread");
+//        System.out.println("End of AI Thread");
     }
 
     private void finishAIConstruction(CeEntity ceBeast){
@@ -58,7 +58,7 @@ public class CeAi extends CePlayer implements Runnable {
                 ceBeast
         );
         this.setTeam(team);
-        System.out.println("AI CREATION: " + ceBeast.toString());
+//        System.out.println("AI CREATION: " + ceBeast.toString());
         this.setCeStats(new CeStats(ceBeast.getCeStats()));
         this.getCeStats().setMaxHitPoints(0);
         this.getCeStats().setCurrentHitPoints(0);
@@ -68,7 +68,7 @@ public class CeAi extends CePlayer implements Runnable {
         List<CeAttack> ceAttacks = this.currentMonster.getAttacks();
         Random random = new Random();
         int ind = random.nextInt(ceAttacks.size());
-        System.out.println(ind);
+//        System.out.println(ind);
         return ceAttacks.get(ind);
     }
 
