@@ -26,19 +26,19 @@ public class testBattle {
         cePlayer1.setActiveMonsterIndex(0);
         CeAi cePlayer2 = new CeAi(cePlayer1);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
-        System.out.println("Battle started");
+        System.out.println("[Test Battle]: Battle started");
 
         while (battle.isFightOngoing()){
             if(battle.getTurn() != null){
                 if (battle.getTurn().getNumber() == cePlayer1.getNumber()) {
-                    System.out.println("Turn of: Player 1");
+                    System.out.println("[Test Battle]: Turn of: Player 1");
                     boolean caught = battle.catchBeast();
-                    if (caught) System.out.println("Beast caught! CONGRATS");
-                    else System.out.println("Beast doesn't like you");
+                    if (caught) System.out.println("[Test Battle]: Beast caught! CONGRATS");
+                    else System.out.println("[Test Battle]: Beast doesn't like you");
                 }
             }
             else {
-                System.out.println("End of fight");}
+                System.out.println("[Test Battle]: End of fight");}
             Thread.sleep(10);
         }
     }
@@ -54,19 +54,23 @@ public class testBattle {
         cePlayer1.setActiveMonsterIndex(0);
         CeAi cePlayer2 = new CeAi(cePlayer1, CeRegions.ArkhamCity);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
-        System.out.println("Battle started");
+        System.out.println("[Test Battle]: Battle started");
 
+        int counter = 0;
         while (battle.isFightOngoing()){
+            if(counter >= 100) System.out.println("[Test Battle]: Test Battle still running");
+            counter++;
             if(battle.getTurn() != null){
+                if(counter >= 100) System.out.println("[Test Battle]: get turn not null");
+                if(counter >= 100) System.out.println("[Test Battle]: battle.getTurn.getNumber: " + battle.getTurn().getNumber());
                 if (battle.getTurn().getNumber() == cePlayer1.getNumber()) {
-                    System.out.println("Turn of: Player 1");
+                    System.out.println("[Test Battle]: Turn of: Player 1");
                     battle.useAttack(new CeAttack(CeAttacks.Punch));
                 }
             }
-            // else {System.out.println("End of fight");}
+            else {System.out.println("[Test Battle]: End of fight");}
             Thread.sleep(10);
         }
-        System.out.println("End of fight");
-        CeExecuterService.shutdownExecutor();
+        System.out.println("[Test Battle]: End of fight");
     }
 }
