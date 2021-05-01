@@ -2,14 +2,16 @@ package calculationEngine.entities;
 
 import calculationEngine.battle.CeBattle;
 import calculationEngine.environment.CeRegions;
+import config.BattleConstants;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CeAi extends CePlayer implements Runnable {
+public class CeAi extends CePlayer {
     private CeEntity currentMonster;
     private CeBattle battle;
+    private static final boolean debug = BattleConstants.battleDebug;
 
     // Constructor for new Random Beast AI
     public CeAi(CePlayer player, CeRegions region) {
@@ -29,27 +31,11 @@ public class CeAi extends CePlayer implements Runnable {
         super();
         this.setTeam(team);
         this.setCeStats(new CeStats(player.getCeStats().getLevel(), type));
+        this.currentMonster = this.getTeam().get(0);
     }
 
-    @Override
-    public void run() {
-        this.currentMonster = this.getTeam().get(0);
-        while (battle.isFightOngoing()) {
-            System.out.println(battle.isFightOngoing());
-            System.out.println("running");
-            if (battle.getTurn() != null) {
-                if (battle.getTurn().getNumber() == this.getNumber()) {
-                    System.out.println("Turn of AI");
-                    battle.useAttack(pickAttack());
-                }
-            } else break;
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println("End of AI Thread");
+    public void useAttack(){
+        battle.useAttack(pickAttack());
     }
 
     private void finishAIConstruction(CeEntity ceBeast){
@@ -58,17 +44,18 @@ public class CeAi extends CePlayer implements Runnable {
                 ceBeast
         );
         this.setTeam(team);
-        System.out.println("AI CREATION: " + ceBeast.toString());
+        if (debug) System.out.println("[AI Construction]: AI CREATION: " + ceBeast.toString());
         this.setCeStats(new CeStats(ceBeast.getCeStats()));
         this.getCeStats().setMaxHitPoints(0);
         this.getCeStats().setCurrentHitPoints(0);
+        this.currentMonster = this.getTeam().get(0);
     }
 
     private CeAttack pickAttack() {
         List<CeAttack> ceAttacks = this.currentMonster.getAttacks();
         Random random = new Random();
         int ind = random.nextInt(ceAttacks.size());
-        System.out.println(ind);
+        if (debug) System.out.println("[AI pickAttack]: " + ind);
         return ceAttacks.get(ind);
     }
 
