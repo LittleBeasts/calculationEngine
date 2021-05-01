@@ -2,6 +2,7 @@ package calculationEngine.battle;
 
 import calculationEngine.CeExecuterService;
 import calculationEngine.entities.*;
+import calculationEngine.environment.CeLoot;
 import calculationEngine.environment.CeRegions;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class testBattle {
         CeExecuterService.shutdownExecutor();
     }
 
-    private static void simulateCatch() throws InterruptedException {
+    private static void simulateCatch() throws Exception {
 
         List<CeEntity> team = new ArrayList<>();
         List<CeAttack> attacks = new ArrayList<>();
@@ -25,7 +26,8 @@ public class testBattle {
         team.add(new CeEntity(CeRegions.ArkhamCity, cePlayer1));
         cePlayer1.setTeam(team);
         cePlayer1.setActiveMonsterIndex(0);
-        CeAi cePlayer2 = new CeAi(cePlayer1);
+        cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("cage"));
+        CeAi cePlayer2 = new CeAi(cePlayer1, CeRegions.ArkhamCity);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
         System.out.println("[Test Battle]: Battle started");
 

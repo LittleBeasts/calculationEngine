@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class CeLoot {
 
-    private static final JSONObject itemList = readJson("./src/main/java/data/items.JSON");
+    private static final JSONObject itemList = readJson("./src/main/java/JSON/items.JSON");
 
     public static CeItem lootItem(String itemKey) {
         JSONObject itemJson = new JSONObject(itemList.get(itemKey).toString());

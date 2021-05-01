@@ -1,5 +1,7 @@
 package calculationEngine.environment;
 
+import calculationEngine.entities.CeInventory;
+
 public class CeItem {
 
     private String name;
@@ -93,5 +95,9 @@ public class CeItem {
                 ", itemBonusStats=" + itemBonusStats.toString() +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public boolean compareTo(CeItem ceItem) {
+        return this.name.equals(ceItem.name);
     }
 }
