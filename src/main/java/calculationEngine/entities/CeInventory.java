@@ -51,22 +51,27 @@ public class CeInventory {
 
     }
 
-    public void useItem(CeItem item) throws Exception {
+    public void useItem(CeItem item) throws ItemNotInInventoryException {
         boolean matchingItem = false;
 
         // maybe add exception for type cage
 
         for (CeSlots slot : slots) {
-            if (slot.getItem().compareTo(item)) {
-                matchingItem = true;
-                int remainingAmount = slot.decreaseAmount();
-                if (remainingAmount <= 0) {
-                    slot.reset();
+            CeItem slotItem = slot.getItem();
+            if (slotItem != null){
+                if (slotItem.compareTo(item)) {
+                    matchingItem = true;
+                    int remainingAmount = slot.decreaseAmount();
+                    if (remainingAmount <= 0) {
+                        slot.reset();
+                    }
+                    break;
                 }
-                break;
             }
         }
-        if (!matchingItem) throw new ItemNotInInventoryException(item);
+        if (!matchingItem){
+            throw new ItemNotInInventoryException(item);
+        }
     }
 
     public void setEquippedArmorShoulder(CeItem equippedArmorShoulder) throws WrongItemException {
