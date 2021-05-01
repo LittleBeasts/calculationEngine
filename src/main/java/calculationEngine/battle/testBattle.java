@@ -10,8 +10,8 @@ import java.util.List;
 
 public class testBattle {
 
-    public static void main(String[] args) throws InterruptedException {
-        simulateAiBattle();
+    public static void main(String[] args) throws Exception {
+//        simulateAiBattle();
         simulateCatch();
         CeExecuterService.shutdownExecutor();
     }
@@ -26,7 +26,9 @@ public class testBattle {
         team.add(new CeEntity(CeRegions.ArkhamCity, cePlayer1));
         cePlayer1.setTeam(team);
         cePlayer1.setActiveMonsterIndex(0);
-        cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("cage"));
+        for (int i = 0; i < 1; i++) {
+            cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("cage"));
+        }
         CeAi cePlayer2 = new CeAi(cePlayer1, CeRegions.ArkhamCity);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
         System.out.println("[Test Battle]: Battle started");
@@ -35,17 +37,24 @@ public class testBattle {
             if (battle.getTurn() != null) {
                 if (battle.getTurn().getNumber() == cePlayer1.getNumber()) {
                     System.out.println("[Test Battle]: Turn of: Player 1");
-                    boolean caught = battle.catchBeast();
-                    if (caught) System.out.println("[Test Battle]: Beast caught! CONGRATS");
-                    else System.out.println("[Test Battle]: Beast doesn't like you");
+                    try {
+                        boolean caught = battle.catchBeast(CeLoot.lootItem("cage"));
+                        if (caught) System.out.println("[Test Battle]: Beast caught! CONGRATS");
+                        else System.out.println("[Test Battle]: Beast doesn't like you");
+                    } catch (ItemNotInInventoryException itemNotInInventoryException) {
+                        System.out.println("[Test Battle]: ItemNotInInventoryException occurred Ending battle");
+                        battle.endBatte();
+                    } catch (WrongItemException wrongItemException){
+                        System.out.println("[Test Battle]: WrongItemException occurred Ending battle");
+                        battle.endBatte();
+                    }
+                } } else {
+                    System.out.println("[Test Battle]: End of fight");
                 }
-            } else {
-                System.out.println("[Test Battle]: End of fight");
+                Thread.sleep(10);
             }
-            Thread.sleep(10);
+            System.out.println("[Test Battle]: End of fight");
         }
-        System.out.println("[Test Battle]: End of fight");
-    }
 
     private static void simulateAiBattle() throws InterruptedException {
 

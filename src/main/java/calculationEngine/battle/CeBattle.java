@@ -89,6 +89,11 @@ public class CeBattle implements Runnable {
         this.selectedFightEntityPlayer2 = entity;
     }
 
+    public void endBatte(){
+        setBattleEnd();
+        setActionDone();
+    }
+
 
     private void setBattleEnd() {
         this.fightOngoing = false;
@@ -104,7 +109,7 @@ public class CeBattle implements Runnable {
         }
     }
 
-    public boolean catchBeast() {
+    public boolean catchBeast(CeItem item) throws Exception {
         if (debug) System.out.println("[Battle Main Thread]: Ce_Catch");
         boolean caught = false;
         if (turnPlayer1) {
