@@ -77,7 +77,6 @@ public class CeBattle implements Runnable {
         }
         turnPlayer1 = false;
         turnPlayer2 = false;
-        CeExecuterService.shutdownExecutor();
         if (debug) System.out.println("[Battle Main Thread]: Battle Thread Ended");
     }
 
@@ -131,10 +130,10 @@ public class CeBattle implements Runnable {
     private void applyAttack(CeEntity attacker, CeEntity defender, CeAttack ceAttack) {
         final int damage = CeDamage.calculateDamage(attacker, defender, ceAttack);
         if (damage != -1) {
-            System.out.println("[Battle Main Thread]: Damage: " + damage);
+            if (debug) System.out.println("[Battle Main Thread]: Damage: " + damage);
             defender.dealDamage(damage);
             if (defender.getCeStats().getType() == CeBeastTypes.PlayerStandard) {
-                System.out.println("[Battle Main Thread]: Dealing Damage to player");
+                if (debug) System.out.println("[Battle Main Thread]: Dealing Damage to player");
                 if (defender.getPlayerNumber() == 1) cePlayer1.dealDamage(damage);
                 else cePlayer2.dealDamage(damage);
             }
@@ -157,20 +156,20 @@ public class CeBattle implements Runnable {
                         this.selectedFightEntityPlayer2.setPlayerNumber(2);
                         defender = selectedFightEntityPlayer2;
                         if (selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints() == 0) {
-                            System.out.println("[Battle Main Thread]: Player2 fight entity HitPoints 0");
+                            if (debug) System.out.println("[Battle Main Thread]: Player2 fight entity HitPoints 0");
                             setBattleEnd();
                         }
                     }
 
                 }
             }
-        } else{ System.out.println("[Battle Main Thread]: Attack missed!");}
+        } else{ if (debug) System.out.println("[Battle Main Thread]: Attack missed!");}
         setActionDone();
     }
 
     private void threadSleep() {
         threadSleep = true;
-        System.out.println("[Battle Main Thread]: Thread now sleeping!");
+        if (debug) System.out.println("[Battle Main Thread]: Thread now sleeping!");
         while (threadSleep) {
             try {
                 Thread.sleep(1);
@@ -178,7 +177,7 @@ public class CeBattle implements Runnable {
                 e.printStackTrace();
             }
         }
-        System.out.println("[Battle Main Thread]: Thread continue");
+        if (debug) System.out.println("[Battle Main Thread]: Thread continue");
     }
 
     private void setActionDone() {
