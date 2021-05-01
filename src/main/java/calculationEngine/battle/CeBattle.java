@@ -193,7 +193,8 @@ public class CeBattle implements Runnable {
     }
 
     private void setActionDone() {
-        this.threadSleep = false; if (debug) System.out.println("[Battle Main Thread]: setAction Done");
+        this.threadSleep = false;
+        if (debug) System.out.println("[Battle Main Thread]: setAction Done");
     }
 
     public CePlayer getTurn() {
