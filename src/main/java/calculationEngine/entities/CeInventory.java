@@ -13,9 +13,9 @@ public class CeInventory {
     CeItem equippedArmorHead;
     CeItem equippedWeapon;
 
-    CeSlots[] slots = new CeSlots[10];
+    CeSlot[] slots = new CeSlot[10];
 
-    public void loadSaveInventory(CeItem armorShoulder, CeItem armorShoes, CeItem armorLegs, CeItem armorChest, CeItem armorHead, CeItem weapon, CeSlots[] slots) {
+    public void loadSaveInventory(CeItem armorShoulder, CeItem armorShoes, CeItem armorLegs, CeItem armorChest, CeItem armorHead, CeItem weapon, CeSlot[] slots) {
         this.equippedArmorChest = armorChest;
         this.slots = slots;
         this.equippedArmorHead = armorHead;
@@ -26,7 +26,7 @@ public class CeInventory {
 
     public CeInventory(){
         for(int i = 0; i < slots.length; i++){
-            slots[i] = new CeSlots();
+            slots[i] = new CeSlot();
         }
     }
 
@@ -35,15 +35,17 @@ public class CeInventory {
         boolean addedItem = false;
         int firstEmptySlot = 0;
         for (int i = 0; i < slots.length; i++ ) {
-            CeSlots slot = slots[i];
+            CeSlot slot = slots[i];
             if (slot.getItem() != null && slot.getItem().compareTo(item)) {
                 slot.increaseAmount();
                 foundSlot = true;
                 addedItem = true;
+                break;
             }
             else if (slot.getItem() == null && !foundSlot) {
                 firstEmptySlot = i;
                 foundSlot = true;
+                break;
             }
         }
         if(!addedItem && foundSlot) slots[firstEmptySlot].setItem(item);
@@ -56,7 +58,7 @@ public class CeInventory {
 
         // maybe add exception for type cage
 
-        for (CeSlots slot : slots) {
+        for (CeSlot slot : slots) {
             CeItem slotItem = slot.getItem();
             if (slotItem != null){
                 if (slotItem.compareTo(item)) {
@@ -75,32 +77,62 @@ public class CeInventory {
     }
 
     public void setEquippedArmorShoulder(CeItem equippedArmorShoulder) throws WrongItemException {
-        if(equippedArmorShoulder.getType() == CeItemTypes.armorShoulder) this.equippedArmorShoulder = equippedArmorShoulder;
+        if(this.equippedArmorShoulder != null)
+            this.equippedArmorShoulder.unequip();
+        if(equippedArmorShoulder.getType() == CeItemTypes.armorShoulder){
+            this.equippedArmorShoulder = equippedArmorShoulder;
+            this.equippedArmorShoulder.equip();
+        }
         else throw new WrongItemException(equippedArmorShoulder, "Armor type shoulderArmor");
     }
 
     public void setEquippedArmorShoes(CeItem equippedArmorShoes) throws WrongItemException {
-        if(equippedArmorShoes.getType() == CeItemTypes.armorShoes) this.equippedArmorShoes = equippedArmorShoes;
+        if(this.equippedArmorShoes != null)
+            this.equippedArmorShoes.unequip();
+        if(equippedArmorShoes.getType() == CeItemTypes.armorShoes){
+            this.equippedArmorShoes = equippedArmorShoes;
+            this.equippedArmorShoes.equip();
+        }
         else throw new WrongItemException(equippedArmorShoes, "Armor type armorShoes");
     }
 
     public void setEquippedArmorLegs(CeItem equippedArmorLegs) throws WrongItemException {
-        if(equippedArmorLegs.getType() == CeItemTypes.armorLegs) this.equippedArmorLegs = equippedArmorLegs;
+        if(this.equippedArmorLegs != null)
+            this.equippedArmorLegs.unequip();
+        if(equippedArmorLegs.getType() == CeItemTypes.armorLegs){
+            this.equippedArmorLegs = equippedArmorLegs;
+            this.equippedArmorLegs.equip();
+        }
         else throw new WrongItemException(equippedArmorLegs, "Armor type ArmorLegs");
     }
 
     public void setEquippedArmorChest(CeItem equippedArmorChest) throws WrongItemException {
-        if(equippedArmorChest.getType() == CeItemTypes.armorChest) this.equippedArmorChest = equippedArmorChest;
+        if(this.equippedArmorChest != null)
+            this.equippedArmorChest.unequip();
+        if(equippedArmorChest.getType() == CeItemTypes.armorChest){
+            this.equippedArmorChest = equippedArmorChest;
+            this.equippedArmorChest.equip();
+        }
         else throw new WrongItemException(equippedArmorChest, "Armor type ArmorChest");
     }
 
     public void setEquippedArmorHead(CeItem equippedArmorHead) throws WrongItemException {
-        if(equippedArmorHead.getType() == CeItemTypes.armorHead) this.equippedArmorHead = equippedArmorHead;
+        if(this.equippedArmorHead != null)
+            this.equippedArmorHead.unequip();
+        if(equippedArmorHead.getType() == CeItemTypes.armorHead){
+            this.equippedArmorHead = equippedArmorHead;
+            this.equippedArmorHead.equip();
+        }
         else throw new WrongItemException(equippedArmorHead, "Armor type armorHead");
     }
 
     public void setEquippedWeapon(CeItem equippedWeapon) throws WrongItemException {
-        if(equippedWeapon.getType() == CeItemTypes.weapon) this.equippedWeapon = equippedWeapon;
+        if(this.equippedWeapon != null)
+            this.equippedWeapon.unequip();
+        if(equippedWeapon.getType() == CeItemTypes.weapon){
+            this.equippedWeapon = equippedWeapon;
+            this.equippedWeapon.equip();
+        }
         else throw new WrongItemException(equippedWeapon, "Armor type weapon");
     }
 
@@ -128,7 +160,7 @@ public class CeInventory {
         return equippedWeapon;
     }
 
-    public CeSlots[] getSlots() {
+    public CeSlot[] getSlots() {
         return slots;
     }
 }

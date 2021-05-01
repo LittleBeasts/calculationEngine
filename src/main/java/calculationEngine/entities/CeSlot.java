@@ -2,12 +2,12 @@ package calculationEngine.entities;
 
 import calculationEngine.environment.CeItem;
 
-public class CeSlots {
+public class CeSlot {
 
     private CeItem item;
     private int amount;
 
-    public CeSlots() {
+    public CeSlot() {
         this.item = null;
         this.amount = 0;
     }
