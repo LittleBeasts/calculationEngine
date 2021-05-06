@@ -1,7 +1,5 @@
 package calculationEngine.environment;
 
-import calculationEngine.entities.CeInventory;
-
 public class CeItem {
 
     private String name;
@@ -23,7 +21,7 @@ public class CeItem {
         this.unique = unique;
         this.type = CeItemTypes.valueOf(type);
         this.uses = uses;
-        this.itemBonusStats = new CeItemBonusStats(itemBonusStats[0], itemBonusStats[1], itemBonusStats[2], itemBonusStats[3], itemBonusStats[4], itemBonusStats[5], itemBonusStats[6]);
+        this.itemBonusStats = new CeItemBonusStats(itemBonusStats);
         this.description = description;
     }
 
@@ -34,7 +32,7 @@ public class CeItem {
         this.unique = unique;
         this.type = CeItemTypes.valueOf(type);
         this.uses = uses;
-        this.itemBonusStats = new CeItemBonusStats(itemBonusStats[0], itemBonusStats[1], itemBonusStats[2], itemBonusStats[3], itemBonusStats[4], itemBonusStats[5], itemBonusStats[6]);
+        this.itemBonusStats = new CeItemBonusStats(itemBonusStats);
         this.description = description;
     }
 
@@ -42,11 +40,11 @@ public class CeItem {
         this.equipped = true;
     }
 
-    public void unequip(){
+    public void unequip() {
         this.equipped = false;
     }
 
-    public int use(){
+    public int use() {
         this.uses--;
         return this.uses; //return remaining uses, so they can be handled in the iventory handler
     }
