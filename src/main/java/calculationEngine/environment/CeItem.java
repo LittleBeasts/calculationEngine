@@ -1,5 +1,7 @@
 package calculationEngine.environment;
 
+import org.json.JSONObject;
+
 public class CeItem {
 
     private String name;
@@ -14,26 +16,24 @@ public class CeItem {
     public CeItem() {
     }
 
-    public void setItemFromSaveGame(String name, String spriteName, boolean equipped, boolean unique, String type, int uses, int[] itemBonusStats, String description) {
-        this.name = name;
-        this.spriteName = spriteName;
-        this.equipped = equipped;
-        this.unique = unique;
-        this.type = CeItemTypes.valueOf(type);
-        this.uses = uses;
-        this.itemBonusStats = new CeItemBonusStats(itemBonusStats);
-        this.description = description;
+    public void setItemFromSaveGame(JSONObject itemJson) {
+        this.equipped = itemJson.getBoolean("equipped"); //TODO: needs to be in the savegame JSON
+        setItem(itemJson);
     }
 
-    public void setNewLootedItem(String name, String spriteName, boolean unique, String type, int uses, int[] itemBonusStats, String description) {
-        this.name = name;
-        this.spriteName = spriteName;
+    public void setNewLootedItem(JSONObject itemJson) {
         this.equipped = false;
-        this.unique = unique;
-        this.type = CeItemTypes.valueOf(type);
-        this.uses = uses;
-        this.itemBonusStats = new CeItemBonusStats(itemBonusStats);
-        this.description = description;
+        setItem(itemJson);
+    }
+
+    private void setItem(JSONObject itemJson) {
+        this.name =  itemJson.getString("name");
+        this.spriteName =  itemJson.getString("spriteName");
+        this.unique = itemJson.getBoolean("unique");
+        this.type = CeItemTypes.valueOf(itemJson.getString("type"));
+        this.uses = itemJson.getInt("uses");
+        this.itemBonusStats = new CeItemBonusStats(CeLoot.jsonArrayToIntArray(itemJson.getJSONArray("bonusStats")));
+        this.description = itemJson.getString("description");
     }
 
     public void equip() {
