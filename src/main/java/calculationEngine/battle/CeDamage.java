@@ -15,20 +15,17 @@ public class CeDamage {
         //roll to d50 to get a quasi normal distribution
         int attackRoll = random.nextInt(51) + random.nextInt(51);
         debugInfo = "Roll: " + attackRoll + "\n";
-        // if the attack misses -1 is returned
         if (attackMisses(attacker, defender, ceAttack, attackRoll)) {
             debugInfo += "Miss\n";
             return -1;
         }
         debugInfo += "Hit\n";
-        // gets attack and defense power.
         int attackPower = calculateAttack(attacker, ceAttack, attackRoll);
         int defensePower = calculateDefense(defender, ceAttack);
 
         debugInfo += "Attack: " + attackPower + "\n";
         debugInfo += "Defense: " + defensePower + "\n";
         if (bDebug) System.out.println(debugInfo);
-        // returns the damage, if the damage would be smaller than zero it will return zero.
         return Math.max((attackPower - defensePower), 0);
     }
 
@@ -41,7 +38,6 @@ public class CeDamage {
         // base difficulty is 50 then add the speed of the defender. After that the speed of the attacker and the accuracy of the attack are subtracted.
         int difficulty = 50 + defender.getCeStats().getSpeed() - (attacker.getCeStats().getSpeed() + ceAttack.getAccuracy());
         debugInfo += "Difficulty: " + difficulty + "\n";
-        // if difficulty is higher than the roll the attack will miss.
         return difficulty > attackRoll;
     }
 
