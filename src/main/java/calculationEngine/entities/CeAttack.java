@@ -30,8 +30,7 @@ public class CeAttack {
         Random random = new Random();
         return probabilityDistribution[random.nextInt(probabilityDistribution.length)];
     }
-
-
+    
     public void levelUp() {
         if (this.level < maxLevel) {
             this.level++;
