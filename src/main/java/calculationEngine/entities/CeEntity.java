@@ -8,20 +8,12 @@ import java.util.List;
 import java.util.Random;
 
 public class CeEntity {
-// |--------------------------------------------------------------------------|
-// |    This class is the parent class for every littleBeast.                 |
-// |    Every Beast will inherit the props and funcs of this class and        |
-// |    extend them.                                                          |
-// |--------------------------------------------------------------------------|
-
-    // properties
     private List<CeAttack> ceAttacks;
 
     // development logic isn't implemented yet -> has to be decided if we want to use this.
     private CeBeasts evolution; // Development beast
     private final int evolutionLvl; // level at which development will take place
 
-    // stats
     private CeStats ceStats;
 
     private final boolean wild;
