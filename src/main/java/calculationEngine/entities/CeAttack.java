@@ -25,17 +25,6 @@ public class CeAttack {
         scaleStats();
     }
 
-    //ToDo: to be decided if needed
-    public CeAttack(String name, int damage, int accuracy, int criticalChance, CeBeastTypes type, int executions, int level) {
-        this.name = name;
-        this.damage = damage;
-        this.accuracy = accuracy;
-        this.criticalChance = criticalChance;
-        this.type = type;
-        this.level = level;
-        this.executions = executions;
-    }
-
     private int calculateRandomLevel() {
         final int[] probabilityDistribution = EntityConstants.ATTACK_PROB_DISTRIBUTION;
         Random random = new Random();
