@@ -10,14 +10,14 @@ public class CeItemBonusStats {
     private int critBonus;
     private int catchBonus;
 
-    public CeItemBonusStats(int healthPoints, int speed, int stamina, int attack, int defense, int critBonus, int catchBonus) {
-        this.healthPoints = healthPoints;
-        this.speed = speed;
-        this.stamina = stamina;
-        this.attack = attack;
-        this.defense = defense;
-        this.critBonus = critBonus;
-        this.catchBonus = catchBonus;
+    public CeItemBonusStats(int[] bonusStats) {
+        this.healthPoints = bonusStats[0]; // healthPoints
+        this.speed = bonusStats[1];//speed
+        this.stamina = bonusStats[2];//stamina
+        this.attack = bonusStats[3];//attack
+        this.defense = bonusStats[4];//defense
+        this.critBonus = bonusStats[5];//critBonus
+        this.catchBonus = bonusStats[6];//catchBonus
     }
 
     public int getHealthPoints() {
