@@ -2,7 +2,6 @@ package calculationEngine.environment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import static config.LootConfig.itemList;
 
 public class CeLoot {
