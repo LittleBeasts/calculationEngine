@@ -4,7 +4,6 @@ import calculationEngine.CeExecuterService;
 import calculationEngine.entities.*;
 import calculationEngine.environment.CeItem;
 import calculationEngine.environment.CeItemTypes;
-import calculationEngine.environment.CeLoot;
 import config.BattleConstants;
 
 import java.util.Random;
@@ -58,21 +57,25 @@ public class CeBattle implements Runnable {
             tickAmountPlayer1 -= selectedFightEntityPlayer1.getCeStats().getSpeed();
             tickAmountPlayer2 -= selectedFightEntityPlayer2.getCeStats().getSpeed();
             if (tickAmountPlayer1 <= 0) {
-                if (debug) System.out.println("[Battle Main Thread]: HP of EP1: " + selectedFightEntityPlayer1.getCeStats().getCurrentHitPoints());
+                if (debug)
+                    System.out.println("[Battle Main Thread]: HP of EP1: " + selectedFightEntityPlayer1.getCeStats().getCurrentHitPoints());
                 if (debug) System.out.println("[Battle Main Thread]: PLAYER 1 TURN");
-                if (debug) System.out.println("[Battle Main Thread]: HP of EP2: " + selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints());
+                if (debug)
+                    System.out.println("[Battle Main Thread]: HP of EP2: " + selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints());
                 turnPlayer1 = true;
                 tickAmountPlayer1 = maxTickAmount + tickAmountPlayer1;
                 threadSleep();
             }
             if (isFightOngoing() && tickAmountPlayer2 <= 0) {
-                if (debug) System.out.println("[Battle Main Thread]: HP of EP2: " + selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints());
+                if (debug)
+                    System.out.println("[Battle Main Thread]: HP of EP2: " + selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints());
                 if (debug) System.out.println("[Battle Main Thread]: PLAYER 2 TURN");
                 if (debug) System.out.println("[Battle Main Thread]: cePlayer2 is AI: " + cePlayer2.isAI());
-                if (debug) System.out.println("[Battle Main Thread]: HP of EP1: " + selectedFightEntityPlayer1.getCeStats().getCurrentHitPoints());
+                if (debug)
+                    System.out.println("[Battle Main Thread]: HP of EP1: " + selectedFightEntityPlayer1.getCeStats().getCurrentHitPoints());
                 turnPlayer2 = true;
                 tickAmountPlayer2 = maxTickAmount + tickAmountPlayer2;
-                if(this.cePlayer2.isAI()) this.cePlayer2Ai.useAttack();
+                if (this.cePlayer2.isAI()) this.cePlayer2Ai.useAttack();
                 else threadSleep();
             }
         }
@@ -89,7 +92,7 @@ public class CeBattle implements Runnable {
         this.selectedFightEntityPlayer2 = entity;
     }
 
-    public void endBatte(){
+    public void endBatte() {
         setBattleEnd();
         setActionDone();
     }
@@ -114,15 +117,14 @@ public class CeBattle implements Runnable {
         boolean caught = false;
         if (turnPlayer1) {
             turnPlayer1 = false;
-            if(item.getType() == CeItemTypes.cage) {
+            if (item.getType() == CeItemTypes.cage) {
                 this.cePlayer1.getInventory().useItem(item); // Currently there is only one Cage option.. will need a system to decide what kind of item it is
                 caught = CeCatching.isCaught(cePlayer1, selectedFightEntityPlayer2, item); // Replace with Inventory use of Cage
                 if (caught) setBattleEnd();
                 setActionDone();
-            }
-            else {
-               setActionDone();
-               throw new WrongItemException(item, "Cage");
+            } else {
+                setActionDone();
+                throw new WrongItemException(item, "Cage");
             }
         }
         return caught;
@@ -140,43 +142,52 @@ public class CeBattle implements Runnable {
     }
 
     private void applyAttack(CeEntity attacker, CeEntity defender, CeAttack ceAttack) {
-        final int damage = CeDamage.calculateDamage(attacker, defender, ceAttack);
+        int damage = CeDamage.calculateDamage(attacker, defender, ceAttack);
         if (damage != -1) {
-            if (debug) System.out.println("[Battle Main Thread]: Damage: " + damage);
-            defender.dealDamage(damage);
-            if (defender.getCeStats().getType() == CeBeastTypes.PlayerStandard) {
-                if (debug) System.out.println("[Battle Main Thread]: Dealing Damage to player");
-                if (defender.getPlayerNumber() == 1) cePlayer1.dealDamage(damage);
-                else cePlayer2.dealDamage(damage);
-            }
-            if (defender.getCeStats().getCurrentHitPoints() <= 0) {
-                defender.setHitPoints(0);
-                if (defender.getCeStats().getType() == CeBeastTypes.PlayerStandard) {
-                    if (defender.getPlayerNumber() == 1) {
-                        cePlayer1.setHitPoints(0);
-                    } else {
-                        cePlayer2.setHitPoints(0);
-                    }
-                    setBattleEnd();
-                } else {
-                    if (defender.getPlayerNumber() == 1) {
-                        setSelectedFightEntityPlayer1(cePlayer1);
-                        this.selectedFightEntityPlayer1.setPlayerNumber(1);
-                        defender = selectedFightEntityPlayer1;
-                    } else {
-                        setSelectedFightEntityPlayer2(cePlayer2);
-                        this.selectedFightEntityPlayer2.setPlayerNumber(2);
-                        defender = selectedFightEntityPlayer2;
-                        if (selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints() == 0) {
-                            if (debug) System.out.println("[Battle Main Thread]: Player2 fight entity HitPoints 0");
-                            setBattleEnd();
-                        }
-                    }
+            dealDamage(defender, damage);
+        } else {
+            if (debug) System.out.println("[Battle Main Thread]: Attack missed!");
+        }
+        setActionDone();
+    }
 
+    private void dealDamage(CeEntity defender, int damage) {
+        if (debug) System.out.println("[Battle Main Thread]: Damage: " + damage);
+        defender.dealDamage(damage);
+        if (defender.getCeStats().getType() == CeBeastTypes.PlayerStandard) {
+            if (debug) System.out.println("[Battle Main Thread]: Dealing Damage to player");
+            if (defender.getPlayerNumber() == 1)
+                cePlayer1.dealDamage(damage);
+            else
+                cePlayer2.dealDamage(damage);
+        }
+        if (defender.getCeStats().getCurrentHitPoints() <= 0) {
+            defenderDies(defender);
+        }
+    }
+
+    private void defenderDies(CeEntity defender) {
+        defender.setHitPoints(0);
+        if (defender.getCeStats().getType() == CeBeastTypes.PlayerStandard) {
+            if (defender.getPlayerNumber() == 1) {
+                cePlayer1.setHitPoints(0);
+            } else {
+                cePlayer2.setHitPoints(0);
+            }
+            setBattleEnd();
+        } else {
+            if (defender.getPlayerNumber() == 1) {
+                setSelectedFightEntityPlayer1(cePlayer1);
+                this.selectedFightEntityPlayer1.setPlayerNumber(1);
+            } else {
+                setSelectedFightEntityPlayer2(cePlayer2);
+                this.selectedFightEntityPlayer2.setPlayerNumber(2);
+                if (selectedFightEntityPlayer2.getCeStats().getCurrentHitPoints() == 0) {
+                    if (debug) System.out.println("[Battle Main Thread]: Player2 fight entity HitPoints 0");
+                    setBattleEnd();
                 }
             }
-        } else{ if (debug) System.out.println("[Battle Main Thread]: Attack missed!");}
-        setActionDone();
+        }
     }
 
     private void threadSleep() {

@@ -4,10 +4,12 @@ import calculationEngine.entities.CeInventory;
 import calculationEngine.entities.CeSlot;
 import calculationEngine.entities.NoPlaceInInventoryException;
 import calculationEngine.environment.CeItem;
-import calculationEngine.environment.CeLoot;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import static config.LootConfig.itemList;
 import static org.junit.Assert.*;
 
 public class CeInventoryTest {
@@ -20,9 +22,9 @@ public class CeInventoryTest {
 
     @Test
     public void checkIfItemAddedToInventory() throws NoPlaceInInventoryException {
+        JSONObject itemJson = new JSONObject(itemList.get("cage").toString());
         CeItem ceItem = new CeItem();
-        int[] itemBonusStats = {10, 10, 10, 10, 10, 10, 0};
-        ceItem.setNewLootedItem("Cage", "sprite_name", false, "cage", 1, itemBonusStats, "amazing cage");
+        ceItem.setNewLootedItem(itemJson);
         ceInventory.addItemToInventory(ceItem);
         CeSlot[] slots = ceInventory.getSlots();
         for (CeSlot slot : slots) {
@@ -35,9 +37,9 @@ public class CeInventoryTest {
 
     @Test
     public void addItemTwoTimesToInventory() throws NoPlaceInInventoryException {
+        JSONObject itemJson = new JSONObject(itemList.get("cage").toString());
         CeItem ceItem = new CeItem();
-        int[] itemBonusStats = {10, 10, 10, 10, 10, 10, 0};
-        ceItem.setNewLootedItem("Cage", "sprite_name", false, "cage", 1, itemBonusStats, "amazing cage");
+        ceItem.setNewLootedItem(itemJson);
         int amountToAdd = 2;
         for (int i = 0; i < amountToAdd; i++) {
             ceInventory.addItemToInventory(ceItem);
@@ -61,9 +63,10 @@ public class CeInventoryTest {
     public void addElvenItemsToInventory() throws NoPlaceInInventoryException {
         int amountToAdd = ceInventory.getMaxItemSlots()+1 ;
         for (int i = 0; i < amountToAdd; i++) {
+            JSONObject itemJson = new JSONObject(itemList.get("cage").toString());
+            itemJson.put("name", "cage" + i);
             CeItem ceItem = new CeItem();
-            int[] itemBonusStats = {10, 10, 10, 10, 10, 10, 0};
-            ceItem.setNewLootedItem("Cage"+i, "sprite_name", false, "cage", 1, itemBonusStats, "amazing cage");
+            ceItem.setNewLootedItem(itemJson);
             ceInventory.addItemToInventory(ceItem);
         }
     }
