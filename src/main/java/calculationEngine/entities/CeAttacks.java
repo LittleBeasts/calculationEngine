@@ -8,6 +8,7 @@ public enum CeAttacks {
     Charge(CeBeastTypes.Boss, 20, 5, 2, 5, "Charge Attack"),
     Whip(CeBeastTypes.Boss, 12, 8, 5, 7, "Water Whip"),
     Scratch(CeBeastTypes.PlayerStandard, 10, 10, 2, 20, "Scratch"),
+    Swipe(CeBeastTypes.Earth, 15, 10, 1, 15, "Tentacle Swipe"),
     Arcane(CeBeastTypes.Earth, 20, 7, 2, 5, "Arcane Blast"),
     Sucker(CeBeastTypes.Earth, 12, 10, 8, 15,  "Sucker Punch"),
     Acid(CeBeastTypes.Water, 10, 10, 5, 15, "Acid Downpour"),
