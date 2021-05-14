@@ -5,6 +5,7 @@ public enum CeBeastTypes {
     Fire("Water", "Earth"),
     Water("Earth", "Fire"),
     Earth("Water", "Fire"),
+    Boss("All", "None"),
     PlayerStandard("NONE", "NONE");
 
     private final String resistanceId;
