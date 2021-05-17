@@ -89,7 +89,7 @@ public class CeInventory {
         return getCeItems(cage);
     }
 
-    public ArrayList<CeItem> getItems() {
+    public ArrayList<CeItem> getConsumables() {
         return getCeItems(consumable);
     }
 
