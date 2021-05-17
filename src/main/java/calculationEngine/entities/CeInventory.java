@@ -93,11 +93,11 @@ public class CeInventory {
         return getCeItems(consumable);
     }
 
-    private ArrayList<CeItem> getCeItems(CeItemTypes consumable) {
+    private ArrayList<CeItem> getCeItems(CeItemTypes itemType) {
         ArrayList<CeItem> items = new ArrayList<>();
         for (CeSlot slot : slots) {
             CeItem slotItem = slot.getItem();
-            if (slotItem != null && slotItem.getType() == consumable) {
+            if (slotItem != null && slotItem.getType() == itemType) {
                 items.add(slotItem);
             }
         }
