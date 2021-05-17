@@ -1,38 +1,20 @@
 package calculationEngine.environment;
 
-
-import static utilities.JsonReader.*;
-
-import config.LootConfig;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import javax.xml.transform.Source;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import static config.LootConfig.itemList;
 
 public class CeLoot {
-
-    private static final JSONObject itemList = readJson("./src/main/java/JSON/items.JSON");
 
     public static CeItem lootItem(String itemKey) {
         JSONObject itemJson = new JSONObject(itemList.get(itemKey).toString());
         CeItem ceItem = new CeItem();
-        ceItem.setNewLootedItem(
-                itemJson.getString("name"),
-                itemJson.getString("spriteName"),
-                itemJson.getBoolean("unique"),
-                itemJson.getString("type"),
-                itemJson.getInt("uses"),
-                jsonArrayToIntArray(itemJson.getJSONArray("bonusStats")),
-                itemJson.getString("description")
-        );
+        ceItem.setNewLootedItem(itemJson);
         // Todo add to Inventory and skip return?
         return ceItem;
     }
 
-    private static int[] jsonArrayToIntArray(JSONArray jsonArray) {
+    public static int[] jsonArrayToIntArray(JSONArray jsonArray) {
         int[] intArray = new int[7];
         for (int i = 0; i <= 6; i++) {
             intArray[i] = jsonArray.getInt(i);
