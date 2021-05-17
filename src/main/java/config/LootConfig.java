@@ -9,5 +9,5 @@ public class LootConfig {
     public static final int dropCommon = 60;
     public static final int dropRare = 35;
     public static final int dropLegendary = 5;
-    public static final JSONObject itemList = readJson("./src/main/java/JSON/items.JSON");
+    public static final JSONObject itemList = readJson(LootConfig.class.getResource("/items.JSON").getPath());
 }
