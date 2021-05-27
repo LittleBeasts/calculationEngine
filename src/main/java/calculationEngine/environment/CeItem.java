@@ -12,6 +12,7 @@ public class CeItem {
     private int uses;
     private CeItemBonusStats itemBonusStats;
     private String description;
+    private CeItemEffects effect;
 
     public CeItem() {
     }
@@ -34,6 +35,7 @@ public class CeItem {
         this.uses = itemJson.getInt("uses");
         this.itemBonusStats = new CeItemBonusStats(CeLoot.jsonArrayToIntArray(itemJson.getJSONArray("bonusStats")));
         this.description = itemJson.getString("description");
+        this.effect = new CeItemEffects(itemJson.getJSONObject("effects"));
     }
 
     public void equip() {

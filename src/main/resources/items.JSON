@@ -27,7 +27,11 @@
     "description": "Heals a portion of your life",
     "probability": "80",
     "uses": 1,
-    "effects": "Heals 10HP",
+    "effects": {
+      "description": "Heals 10HP",
+      "type": "healing",
+      "value": 10
+    },
     "unique": false,
     "type": "consumable",
     "bonusStats":[

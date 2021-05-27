@@ -18,6 +18,8 @@ public class CeInventory {
     CeItem equippedArmorHead;
     CeItem equippedWeapon;
 
+    CeStats playerStats;
+
     int maxItemSlots = 10;
     CeSlot[] slots = new CeSlot[maxItemSlots];
 
@@ -31,10 +33,11 @@ public class CeInventory {
         this.equippedWeapon = weapon;
     }
 
-    public CeInventory() {
+    public CeInventory(CeStats ceStats) {
         for (int i = 0; i < slots.length; i++) {
             slots[i] = new CeSlot();
         }
+        this.playerStats = ceStats;
     }
 
     public void addItemToInventory(CeItem item) throws NoPlaceInInventoryException {
@@ -132,55 +135,67 @@ public class CeInventory {
 
     private void setEquippedArmorShoulder(CeItem equippedArmorShoulder) throws WrongItemException {
         if (this.equippedArmorShoulder != null)
+            this.playerStats.removeBonusStats(this.equippedArmorShoulder.getItemBonusStats());
             this.equippedArmorShoulder.unequip();
         if (equippedArmorShoulder.getType() == armorShoulder) {
             this.equippedArmorShoulder = equippedArmorShoulder;
             this.equippedArmorShoulder.equip();
+            this.playerStats.applyBonusStats(equippedArmorShoulder.getItemBonusStats());
         } else throw new WrongItemException(equippedArmorShoulder, "Armor type shoulderArmor");
     }
 
     private void setEquippedArmorShoes(CeItem equippedArmorShoes) throws WrongItemException {
         if (this.equippedArmorShoes != null)
+            this.playerStats.removeBonusStats(this.equippedArmorShoes.getItemBonusStats());
             this.equippedArmorShoes.unequip();
         if (equippedArmorShoes.getType() == armorShoes) {
             this.equippedArmorShoes = equippedArmorShoes;
             this.equippedArmorShoes.equip();
+            this.playerStats.applyBonusStats(equippedArmorShoes.getItemBonusStats());
         } else throw new WrongItemException(equippedArmorShoes, "Armor type armorShoes");
     }
 
     private void setEquippedArmorLegs(CeItem equippedArmorLegs) throws WrongItemException {
         if (this.equippedArmorLegs != null)
+            this.playerStats.removeBonusStats(this.equippedArmorLegs.getItemBonusStats());
             this.equippedArmorLegs.unequip();
         if (equippedArmorLegs.getType() == armorLegs) {
             this.equippedArmorLegs = equippedArmorLegs;
             this.equippedArmorLegs.equip();
+            this.playerStats.applyBonusStats(equippedArmorLegs.getItemBonusStats());
         } else throw new WrongItemException(equippedArmorLegs, "Armor type ArmorLegs");
     }
 
     private void setEquippedArmorChest(CeItem equippedArmorChest) throws WrongItemException {
         if (this.equippedArmorChest != null)
+            this.playerStats.removeBonusStats(this.equippedArmorChest.getItemBonusStats());
             this.equippedArmorChest.unequip();
         if (equippedArmorChest.getType() == armorChest) {
             this.equippedArmorChest = equippedArmorChest;
             this.equippedArmorChest.equip();
+            this.playerStats.applyBonusStats(equippedArmorChest.getItemBonusStats());
         } else throw new WrongItemException(equippedArmorChest, "Armor type ArmorChest");
     }
 
     private void setEquippedArmorHead(CeItem equippedArmorHead) throws WrongItemException {
         if (this.equippedArmorHead != null)
+            this.playerStats.removeBonusStats(this.equippedArmorHead.getItemBonusStats());
             this.equippedArmorHead.unequip();
         if (equippedArmorHead.getType() == armorHead) {
             this.equippedArmorHead = equippedArmorHead;
             this.equippedArmorHead.equip();
+            this.playerStats.applyBonusStats(equippedArmorHead.getItemBonusStats());
         } else throw new WrongItemException(equippedArmorHead, "Armor type armorHead");
     }
 
     private void setEquippedWeapon(CeItem equippedWeapon) throws WrongItemException {
         if (this.equippedWeapon != null)
+            this.playerStats.removeBonusStats(this.equippedWeapon.getItemBonusStats());
             this.equippedWeapon.unequip();
         if (equippedWeapon.getType() == weapon) {
             this.equippedWeapon = equippedWeapon;
             this.equippedWeapon.equip();
+            this.playerStats.applyBonusStats(equippedWeapon.getItemBonusStats());
         } else throw new WrongItemException(equippedWeapon, "Armor type weapon");
     }
 
@@ -214,5 +229,9 @@ public class CeInventory {
 
     public int getMaxItemSlots() {
         return maxItemSlots;
+    }
+
+    public void setPlayerStats(CeStats playerStats) {
+        this.playerStats = playerStats;
     }
 }

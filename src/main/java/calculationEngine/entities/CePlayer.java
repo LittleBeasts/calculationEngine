@@ -17,7 +17,7 @@ public class CePlayer extends CeEntity {
         super(ceStats, ceAttacks, Integer.MAX_VALUE, false);
         this.team = team;
         this.isAI = isAI;
-        this.inventory = new CeInventory();
+        this.inventory = new CeInventory(this.getCeStats());
     }
 
     // Constructor for AI

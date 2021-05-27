@@ -1,5 +1,7 @@
 package calculationEngine.entities;
 
+import calculationEngine.environment.CeItem;
+import calculationEngine.environment.CeItemBonusStats;
 import config.AiConstants;
 import config.EntityConstants;
 import config.PlayerConfig;
@@ -18,6 +20,7 @@ public class CeStats {
     private int attack;
     private int defense;
     private int friendshipPoints;
+    private int critBonus = 0;
 
     private Random random = new Random();
 
@@ -36,7 +39,7 @@ public class CeStats {
     }
 
     // Constructor for a new random Beast
-    public CeStats(CeBeasts beast, int playerLvl){
+    public CeStats(CeBeasts beast, int playerLvl) {
         // calculate Level
         this.level = calcLvl(playerLvl);
         this.nature = CeNature.getRandomNature();
@@ -50,7 +53,7 @@ public class CeStats {
         this.defense = scaleOnLvl(beast.getBaseDefense(), this.level, beast.getDefenseLvlScaling()) + (random.nextInt(EntityConstants.DEFENSE_RANGE * 2) - EntityConstants.DEFENSE_RANGE);
     }
 
-    public CeStats(CeBeasts beast){ // dev constructor
+    public CeStats(CeBeasts beast) { // dev constructor
         this.type = beast.getType();
         this.nature = CeNature.getRandomNature();
         this.currentHitPoints = beast.getBaseHp();
@@ -64,7 +67,7 @@ public class CeStats {
     }
 
     // AI NPC Constructor
-    public CeStats(int playerLvl, CeBeastTypes type){
+    public CeStats(int playerLvl, CeBeastTypes type) {
         this.level = calcLvl(playerLvl);
         this.type = type;
         this.nature = CeNature.getRandomNature();
@@ -78,7 +81,7 @@ public class CeStats {
         this.friendshipPoints = 0;
     }
 
-    public CeStats(CeStats ceStats){
+    public CeStats(CeStats ceStats) {
         this.level = ceStats.getLevel();
         this.currentHitPoints = ceStats.getCurrentHitPoints();
         this.maxHitPoints = ceStats.getMaxHitPoints();
@@ -96,6 +99,24 @@ public class CeStats {
         boolean lvlInRange = EntityConstants.MAX_LVL >= tmpLevel && EntityConstants.START_LVL <= tmpLevel;
         return lvlInRange ? tmpLevel : (tmpLevel <= EntityConstants.MAX_LVL ? EntityConstants.START_LVL : EntityConstants.MAX_LVL); // Sets Level to constant if level isn't in specified range
 
+    }
+
+    public void applyBonusStats(CeItemBonusStats ceItemBonusStats) {
+        this.attack += ceItemBonusStats.getAttack();
+        this.defense += ceItemBonusStats.getDefense();
+        this.maxHitPoints += ceItemBonusStats.getHealthPoints();
+        this.speed += ceItemBonusStats.getSpeed();
+        this.stamina += ceItemBonusStats.getStamina();
+        this.critBonus += ceItemBonusStats.getCritBonus();
+    }
+
+    public void removeBonusStats(CeItemBonusStats ceItemBonusStats) {
+        this.attack -= ceItemBonusStats.getAttack();
+        this.defense -= ceItemBonusStats.getDefense();
+        this.maxHitPoints -= ceItemBonusStats.getHealthPoints();
+        this.speed -= ceItemBonusStats.getSpeed();
+        this.stamina -= ceItemBonusStats.getStamina();
+        this.critBonus -= ceItemBonusStats.getCritBonus();
     }
 
     public static int scaleOnLvl(int base, int lvl, int lvlScaling) {
@@ -152,5 +173,9 @@ public class CeStats {
 
     public void setMaxHitPoints(int maxHitPoints) {
         this.maxHitPoints = maxHitPoints;
+    }
+
+    public int getCritBonus() {
+        return critBonus;
     }
 }

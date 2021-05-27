@@ -1,8 +1,6 @@
 package calculationEngine.enviroment;
 
-import calculationEngine.entities.CeInventory;
-import calculationEngine.entities.CeSlot;
-import calculationEngine.entities.NoPlaceInInventoryException;
+import calculationEngine.entities.*;
 import calculationEngine.environment.CeItem;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -17,7 +15,7 @@ public class CeInventoryTest {
 
     @Before
     public void setUp() {
-        ceInventory = new CeInventory();
+        ceInventory = new CeInventory(new CeStats(CeBeasts.StinkenderFeuerFurz));
     }
 
     @Test
