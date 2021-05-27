@@ -1,41 +1,74 @@
 package calculationEngine.environment;
 
 import calculationEngine.entities.CeStats;
+import config.BattleConstants;
+import config.LootConfig;
 import org.json.JSONObject;
 
 public class CeItemEffects {
 
-    effects effect;
-    String description;
-    int value;
+    private effects effect;
+    private String description;
+    private int value;
+
+    private static final boolean debug = BattleConstants.battleDebug;
 
     private enum effects{
-        heal,
-        increaseDamage,
+        healing,
         increaseSpeed,
         increaseAttack,
         increaseCritBonus,
-        increaseDefense;
+        increaseDefense,
+        catchBeast,
+        defaultEffect
     }
 
     public CeItemEffects(JSONObject effectObject){
         this.effect = effects.valueOf(effectObject.getString("type"));
         this.value = effectObject.getInt("value");
+        this.description = effectObject.getString("description");
     }
 
-    public void use(CeStats ceStats, CeItemBonusStats ceItemBonusStats){
-        switch (this.name()){
-            case "heal":
+    public void use(CeStats ceStats){
+        switch (this.effect.name()){
+            case "healing":
                 int hitPoints = ceStats.getCurrentHitPoints();
-                hitPoints += ceItemBonusStats.getHealthPoints();
+                hitPoints += this.value;
+                ceStats.setCurrentHitPoints(hitPoints);
+                if (debug) System.out.println("[CeItemEffects] healing by " + this.value + " points");
+                break;
+            case "increaseSpeed":
+                int speed = ceStats.getSpeed();
+                speed += this.value;
+                ceStats.setSpeed(speed);
+                break;
+            case "increaseAttack":
+                int attack = ceStats.getAttack();
+                attack += this.value;
+                ceStats.setAttack(attack);
+                break;
+            case "increaseCritBonus":
+                int critBonus = ceStats.getCritBonus();
+                critBonus += this.value;
+                ceStats.setCritBonus(critBonus);
+                break;
+            case "increaseDefense":
+                int defense = ceStats.getDefense();
+                defense += this.value;
+                ceStats.setDefense(defense);
+                break;
         }
     }
 
-}
+    public effects getEffect() {
+        return effect;
+    }
 
-class a{
-    public static void main(String[] args) {
-        CeItemEffects effect = CeItemEffects.heal;
-        System.out.println(effect.name());
+    public String getDescription() {
+        return description;
+    }
+
+    public int getValue() {
+        return value;
     }
 }

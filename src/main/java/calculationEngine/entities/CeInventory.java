@@ -75,6 +75,7 @@ public class CeInventory {
             if (slotItem != null) {
                 if (slotItem.compareTo(item)) {
                     matchingItem = true;
+                    slotItem.use(this.playerStats);
                     int remainingAmount = slot.decreaseAmount();
                     if (remainingAmount <= 0) {
                         slot.reset();
@@ -134,9 +135,10 @@ public class CeInventory {
     }
 
     private void setEquippedArmorShoulder(CeItem equippedArmorShoulder) throws WrongItemException {
-        if (this.equippedArmorShoulder != null)
+        if (this.equippedArmorShoulder != null) {
             this.playerStats.removeBonusStats(this.equippedArmorShoulder.getItemBonusStats());
             this.equippedArmorShoulder.unequip();
+        }
         if (equippedArmorShoulder.getType() == armorShoulder) {
             this.equippedArmorShoulder = equippedArmorShoulder;
             this.equippedArmorShoulder.equip();
@@ -145,9 +147,10 @@ public class CeInventory {
     }
 
     private void setEquippedArmorShoes(CeItem equippedArmorShoes) throws WrongItemException {
-        if (this.equippedArmorShoes != null)
+        if (this.equippedArmorShoes != null) {
             this.playerStats.removeBonusStats(this.equippedArmorShoes.getItemBonusStats());
             this.equippedArmorShoes.unequip();
+        }
         if (equippedArmorShoes.getType() == armorShoes) {
             this.equippedArmorShoes = equippedArmorShoes;
             this.equippedArmorShoes.equip();
@@ -156,9 +159,10 @@ public class CeInventory {
     }
 
     private void setEquippedArmorLegs(CeItem equippedArmorLegs) throws WrongItemException {
-        if (this.equippedArmorLegs != null)
+        if (this.equippedArmorLegs != null) {
             this.playerStats.removeBonusStats(this.equippedArmorLegs.getItemBonusStats());
             this.equippedArmorLegs.unequip();
+        }
         if (equippedArmorLegs.getType() == armorLegs) {
             this.equippedArmorLegs = equippedArmorLegs;
             this.equippedArmorLegs.equip();
@@ -167,9 +171,10 @@ public class CeInventory {
     }
 
     private void setEquippedArmorChest(CeItem equippedArmorChest) throws WrongItemException {
-        if (this.equippedArmorChest != null)
+        if (this.equippedArmorChest != null) {
             this.playerStats.removeBonusStats(this.equippedArmorChest.getItemBonusStats());
             this.equippedArmorChest.unequip();
+        }
         if (equippedArmorChest.getType() == armorChest) {
             this.equippedArmorChest = equippedArmorChest;
             this.equippedArmorChest.equip();
@@ -178,9 +183,10 @@ public class CeInventory {
     }
 
     private void setEquippedArmorHead(CeItem equippedArmorHead) throws WrongItemException {
-        if (this.equippedArmorHead != null)
+        if (this.equippedArmorHead != null) {
             this.playerStats.removeBonusStats(this.equippedArmorHead.getItemBonusStats());
             this.equippedArmorHead.unequip();
+        }
         if (equippedArmorHead.getType() == armorHead) {
             this.equippedArmorHead = equippedArmorHead;
             this.equippedArmorHead.equip();
@@ -189,9 +195,10 @@ public class CeInventory {
     }
 
     private void setEquippedWeapon(CeItem equippedWeapon) throws WrongItemException {
-        if (this.equippedWeapon != null)
+        if (this.equippedWeapon != null) {
             this.playerStats.removeBonusStats(this.equippedWeapon.getItemBonusStats());
             this.equippedWeapon.unequip();
+        }
         if (equippedWeapon.getType() == weapon) {
             this.equippedWeapon = equippedWeapon;
             this.equippedWeapon.equip();

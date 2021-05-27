@@ -178,4 +178,46 @@ public class CeStats {
     public int getCritBonus() {
         return critBonus;
     }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public void setFriendshipPoints(int friendshipPoints) {
+        this.friendshipPoints = friendshipPoints;
+    }
+
+    public void setCritBonus(int critBonus) {
+        this.critBonus = critBonus;
+    }
+
+    @Override
+    public String toString() {
+        return "CeStats{" +
+                "type=" + type +
+                ", nature=" + nature +
+                ", level=" + level +
+                ", currentHitPoints=" + currentHitPoints +
+                ", maxHitPoints=" + maxHitPoints +
+                ", speed=" + speed +
+                ", stamina=" + stamina +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", friendshipPoints=" + friendshipPoints +
+                ", critBonus=" + critBonus +
+                ", random=" + random +
+                '}';
+    }
 }

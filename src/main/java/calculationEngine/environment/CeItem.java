@@ -1,5 +1,6 @@
 package calculationEngine.environment;
 
+import calculationEngine.entities.CeStats;
 import org.json.JSONObject;
 
 public class CeItem {
@@ -46,7 +47,8 @@ public class CeItem {
         this.equipped = false;
     }
 
-    public int use() {
+    public int use(CeStats ceStats) {
+        this.effect.use(ceStats);
         this.uses--;
         return this.uses; //return remaining uses, so they can be handled in the iventory handler
     }
