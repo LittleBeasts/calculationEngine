@@ -6,13 +6,13 @@ import org.json.JSONObject;
 
 public class CeItemEffects {
 
-    private effects effect;
+    private Effects effect;
     private String description;
     private int value;
 
     private static final boolean debug = BattleConstants.battleDebug;
 
-    private enum effects{
+    private enum Effects {
         healing,
         increaseSpeed,
         increaseAttack,
@@ -23,7 +23,7 @@ public class CeItemEffects {
     }
 
     public CeItemEffects(JSONObject effectObject){
-        this.effect = effects.valueOf(effectObject.getString("type"));
+        this.effect = Effects.valueOf(effectObject.getString("type"));
         this.value = effectObject.getInt("value");
         this.description = effectObject.getString("description");
     }
@@ -60,7 +60,7 @@ public class CeItemEffects {
         }
     }
 
-    public effects getEffect() {
+    public Effects getEffect() {
         return effect;
     }
 
