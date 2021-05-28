@@ -5,7 +5,6 @@ import calculationEngine.environment.CeItem;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static config.LootConfig.itemList;
 import static org.junit.Assert.*;

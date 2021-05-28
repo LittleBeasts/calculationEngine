@@ -2,7 +2,6 @@ package calculationEngine.environment;
 
 import calculationEngine.entities.CeStats;
 import config.BattleConstants;
-import config.LootConfig;
 import org.json.JSONObject;
 
 public class CeItemEffects {

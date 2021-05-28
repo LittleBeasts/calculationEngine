@@ -1,10 +1,8 @@
 package calculationEngine.entities;
 
-import calculationEngine.environment.CeItem;
 import calculationEngine.environment.CeItemBonusStats;
 import config.AiConstants;
 import config.EntityConstants;
-import config.PlayerConfig;
 
 import java.util.Random;
 
