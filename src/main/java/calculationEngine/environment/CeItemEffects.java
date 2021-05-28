@@ -57,6 +57,7 @@ public class CeItemEffects {
                 defense += this.value;
                 ceStats.setDefense(defense);
                 break;
+            default: break;
         }
     }
 
