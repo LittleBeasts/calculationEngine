@@ -11,14 +11,14 @@ import static calculationEngine.environment.CeItemTypes.armorShoulder;
 
 public class CeInventory {
 
-    CeItem equippedArmorShoulder;
-    CeItem equippedArmorShoes;
-    CeItem equippedArmorLegs;
-    CeItem equippedArmorChest;
-    CeItem equippedArmorHead;
-    CeItem equippedWeapon;
+    private CeItem equippedArmorShoulder;
+    private CeItem equippedArmorShoes;
+    private CeItem equippedArmorLegs;
+    private CeItem equippedArmorChest;
+    private CeItem equippedArmorHead;
+    private CeItem equippedWeapon;
 
-    CeStats playerStats;
+    private CeStats playerStats;
 
     int maxItemSlots = 10;
     CeSlot[] slots = new CeSlot[maxItemSlots];
