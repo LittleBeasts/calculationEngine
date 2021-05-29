@@ -45,7 +45,7 @@ public class CeAi extends CePlayer {
         );
         this.setTeam(team);
         if (debug) System.out.println("[AI Construction]: AI CREATION: " + ceBeast.toString());
-        this.setCeStats(new CeStats(ceBeast.getCeStats()));
+        this.setCeStats(ceBeast.getCeStats());
         this.getCeStats().setMaxHitPoints(0);
         this.getCeStats().setCurrentHitPoints(0);
         this.currentMonster = this.getTeam().get(0);

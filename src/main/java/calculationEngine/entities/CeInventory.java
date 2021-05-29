@@ -75,6 +75,7 @@ public class CeInventory {
             if (slotItem != null) {
                 if (slotItem.compareTo(item)) {
                     matchingItem = true;
+                    //TODO: Add switch case for item type and call correct Methods
                     slotItem.use(this.playerStats);
                     int remainingAmount = slot.decreaseAmount();
                     if (remainingAmount <= 0) {
@@ -138,6 +139,7 @@ public class CeInventory {
         if (this.equippedArmorShoulder != null) {
             this.playerStats.removeBonusStats(this.equippedArmorShoulder.getItemBonusStats());
             this.equippedArmorShoulder.unequip();
+            // TODO: set to null
         }
         if (equippedArmorShoulder.getType() == armorShoulder) {
             this.equippedArmorShoulder = equippedArmorShoulder;
