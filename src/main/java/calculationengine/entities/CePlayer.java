@@ -1,6 +1,6 @@
 package calculationengine.entities;
 
-import config.PlayerConfig;
+import config.PlayerConstants;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class CePlayer extends CeEntity {
     private boolean isAI;
     private int playerNumber;
     private int activeMonsterIndex = 0;
-    private final CeAttack[] playerStandardCeAttacks = PlayerConfig.PLAYER_STANDARD_CE_ATTACKS;
+    private final CeAttack[] playerStandardCeAttacks = PlayerConstants.PLAYER_STANDARD_CE_ATTACKS;
     private CeInventory inventory;
 
     public CePlayer(CeStats ceStats, List<CeAttack> ceAttacks, List<CeEntity> team, boolean isAI) {
