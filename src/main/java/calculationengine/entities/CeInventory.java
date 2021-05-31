@@ -6,8 +6,14 @@ import calculationengine.environment.CeItemTypes;
 
 import java.util.ArrayList;
 
-import static calculationengine.environment.CeItemTypes.*;
+import static calculationengine.environment.CeItemTypes.armorChest;
+import static calculationengine.environment.CeItemTypes.armorHead;
+import static calculationengine.environment.CeItemTypes.armorLegs;
+import static calculationengine.environment.CeItemTypes.armorShoes;
 import static calculationengine.environment.CeItemTypes.armorShoulder;
+import static calculationengine.environment.CeItemTypes.cage;
+import static calculationengine.environment.CeItemTypes.consumable;
+import static calculationengine.environment.CeItemTypes.weapon;
 
 public class CeInventory {
 
@@ -20,8 +26,8 @@ public class CeInventory {
 
     private CeStats playerStats;
 
-    int maxItemSlots = 10;
-    CeSlot[] slots = new CeSlot[maxItemSlots];
+    private int maxItemSlots = 10;
+    private CeSlot[] slots = new CeSlot[maxItemSlots];
 
     public void loadSaveInventory(CeItem armorShoulder, CeItem armorShoes, CeItem armorLegs, CeItem armorChest, CeItem armorHead, CeItem weapon, CeSlot[] slots) {
         this.slots = slots;
@@ -42,7 +48,7 @@ public class CeInventory {
 
     public void addItemToInventory(CeItem item) throws NoPlaceInInventoryException {
         if (item == null) {
-            throw new NullPointerException();
+            throw new IllegalArgumentException();
         }
         boolean foundSlot = false;
         boolean addedItem = false;
@@ -72,17 +78,15 @@ public class CeInventory {
 
         for (CeSlot slot : slots) {
             CeItem slotItem = slot.getItem();
-            if (slotItem != null) {
-                if (slotItem.compareTo(item)) {
-                    matchingItem = true;
-                    //TODO: Add switch case for item type and call correct Methods
-                    slotItem.use(this.playerStats);
-                    int remainingAmount = slot.decreaseAmount();
-                    if (remainingAmount <= 0) {
-                        slot.reset();
-                    }
-                    break;
+            if (slotItem != null && slotItem.compareTo(item)) {
+                matchingItem = true;
+                //TODO: Add switch case for item type and call correct Methods
+                slotItem.use(this.playerStats);
+                int remainingAmount = slot.decreaseAmount();
+                if (remainingAmount <= 0) {
+                    slot.reset();
                 }
+                break;
             }
         }
         if (!matchingItem) {
