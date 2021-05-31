@@ -1,7 +1,17 @@
 package calculationengine.environment;
 
 import calculationengine.battle.WrongItemException;
-import calculationengine.entities.*;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeAttacks;
+import calculationengine.entities.CeBeastTypes;
+import calculationengine.entities.CeBeasts;
+import calculationengine.entities.CeEntity;
+import calculationengine.entities.CeInventory;
+import calculationengine.entities.CeNature;
+import calculationengine.entities.CePlayer;
+import calculationengine.entities.CeStats;
+import calculationengine.entities.ItemNotInInventoryException;
+import calculationengine.entities.NoPlaceInInventoryException;
 
 import java.util.ArrayList;
 import java.util.List;
