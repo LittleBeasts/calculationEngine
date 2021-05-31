@@ -1,16 +1,20 @@
 package calculationengine.enviroment;
 
-import calculationengine.entities.*;
+import calculationengine.entities.CeBeasts;
+import calculationengine.entities.CeInventory;
+import calculationengine.entities.CeSlot;
+import calculationengine.entities.CeStats;
+import calculationengine.entities.NoPlaceInInventoryException;
 import calculationengine.environment.CeItem;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
 import static config.LootConstants.itemList;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CeInventoryTest {
-    CeInventory ceInventory;
+    private CeInventory ceInventory;
 
     @Before
     public void setUp() {
