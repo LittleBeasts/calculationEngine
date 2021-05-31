@@ -26,14 +26,7 @@ public class TestBattle {
 
     private static void simulateCatch() throws Exception {
 
-        List<CeEntity> team = new ArrayList<>();
-        List<CeAttack> attacks = new ArrayList<>();
-        attacks.add(new CeAttack(CeAttacks.Punch));
-        CePlayer cePlayer1 = new CePlayer(new CeStats(CeBeastTypes.PlayerStandard, CeNature.ANGRY, 1, 100, 100, 50, 200, 200, 200, 1), attacks, team, false);
-
-        team.add(new CeEntity(CeRegions.ArkhamCity, cePlayer1));
-        cePlayer1.setTeam(team);
-        cePlayer1.setActiveMonsterIndex(0);
+        CePlayer cePlayer1 = init();
         for (int i = 0; i < 1; i++) {
             cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("cage"));
         }
@@ -57,22 +50,28 @@ public class TestBattle {
                         battle.endBatte();
                     }
                 } } else {
-                    System.out.println("[Test Battle]: End of fight");
-                }
-                Thread.sleep(10);
+                System.out.println("[Test Battle]: End of fight");
             }
-            System.out.println("[Test Battle]: End of fight");
+            Thread.sleep(10);
         }
+        System.out.println("[Test Battle]: End of fight");
+    }
 
-    private static void simulateAiBattle() throws InterruptedException {
-
+    private static CePlayer init() {
         List<CeEntity> team = new ArrayList<>();
         List<CeAttack> attacks = new ArrayList<>();
         attacks.add(new CeAttack(CeAttacks.Punch));
         CePlayer cePlayer1 = new CePlayer(new CeStats(CeBeastTypes.PlayerStandard, CeNature.ANGRY, 1, 100, 100, 50, 200, 200, 200, 1), attacks, team, false);
+
         team.add(new CeEntity(CeRegions.ArkhamCity, cePlayer1));
         cePlayer1.setTeam(team);
         cePlayer1.setActiveMonsterIndex(0);
+        return cePlayer1;
+    }
+
+    private static void simulateAiBattle() throws InterruptedException {
+
+        CePlayer cePlayer1 = init();
         CeAi cePlayer2 = new CeAi(cePlayer1, CeRegions.ArkhamCity);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
         System.out.println("[Test Battle]: Battle started");
