@@ -4,7 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import static config.LootConstants.itemList;
 
-public class CeLoot {
+public class CeLootUtils {
 
     public static CeItem lootItem(String itemKey) {
         JSONObject itemJson = new JSONObject(itemList.get(itemKey).toString());

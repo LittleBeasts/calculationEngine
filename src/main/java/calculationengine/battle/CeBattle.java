@@ -1,7 +1,11 @@
 package calculationengine.battle;
 
-import calculationengine.CeExecuterService;
-import calculationengine.entities.*;
+import calculationengine.CeExecuterServiceUtils;
+import calculationengine.entities.CeAi;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeBeastTypes;
+import calculationengine.entities.CeEntity;
+import calculationengine.entities.CePlayer;
 import calculationengine.environment.CeItem;
 import calculationengine.environment.CeItemTypes;
 import config.BattleConstants;
@@ -33,7 +37,7 @@ public class CeBattle implements Runnable {
         this.cePlayer2 = cePlayer2;
         this.cePlayer1.setNumber(1);
         this.cePlayer2.setNumber(2);
-        CeExecuterService.addThreadToExecutor(this);
+        CeExecuterServiceUtils.addThreadToExecutor(this);
     }
 
     public CeBattle(CePlayer cePlayer1, CeAi cePlayer2) {

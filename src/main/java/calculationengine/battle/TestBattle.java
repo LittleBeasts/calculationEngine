@@ -1,6 +1,6 @@
 package calculationengine.battle;
 
-import calculationengine.CeExecuterService;
+import calculationengine.CeExecuterServiceUtils;
 import calculationengine.entities.CeAi;
 import calculationengine.entities.CeAttack;
 import calculationengine.entities.CeAttacks;
@@ -10,7 +10,7 @@ import calculationengine.entities.CeNature;
 import calculationengine.entities.CePlayer;
 import calculationengine.entities.CeStats;
 import calculationengine.entities.ItemNotInInventoryException;
-import calculationengine.environment.CeLoot;
+import calculationengine.environment.CeLootUtils;
 import calculationengine.environment.CeRegions;
 
 import java.util.ArrayList;
@@ -21,14 +21,14 @@ public class TestBattle {
     public static void main(String[] args) throws Exception {
         simulateAiBattle();
         simulateCatch();
-        CeExecuterService.shutdownExecutor();
+        CeExecuterServiceUtils.shutdownExecutor();
     }
 
     private static void simulateCatch() throws Exception {
 
         CePlayer cePlayer1 = init();
         for (int i = 0; i < 1; i++) {
-            cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("cage"));
+            cePlayer1.getInventory().addItemToInventory(CeLootUtils.lootItem("cage"));
         }
         CeAi cePlayer2 = new CeAi(cePlayer1, CeRegions.ArkhamCity);
         CeBattle battle = new CeBattle(cePlayer1, cePlayer2);
@@ -39,7 +39,7 @@ public class TestBattle {
                 if (battle.getTurn().getNumber() == cePlayer1.getNumber()) {
                     System.out.println("[Test Battle]: Turn of: Player 1");
                     try {
-                        boolean caught = battle.catchBeast(CeLoot.lootItem("cage"));
+                        boolean caught = battle.catchBeast(CeLootUtils.lootItem("cage"));
                         if (caught) System.out.println("[Test Battle]: Beast caught! CONGRATS");
                         else System.out.println("[Test Battle]: Beast doesn't like you");
                     } catch (ItemNotInInventoryException itemNotInInventoryException) {

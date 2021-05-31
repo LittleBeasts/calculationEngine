@@ -18,13 +18,13 @@ import java.util.List;
 
 public class TestItems {
     public static void main(String[] args) throws NoPlaceInInventoryException {
-        System.out.println(CeLoot.lootItem("cage").toString());
+        System.out.println(CeLootUtils.lootItem("cage").toString());
         CeInventory inventory = new CeInventory(new CeStats(CeBeasts.StinkenderFeuerFurz));
-        inventory.addItemToInventory(CeLoot.lootItem("cage"));
+        inventory.addItemToInventory(CeLootUtils.lootItem("cage"));
         System.out.println("Amount: " + inventory.getSlots()[0].getAmount()); // should be 1
-        inventory.addItemToInventory(CeLoot.lootItem("cage"));
+        inventory.addItemToInventory(CeLootUtils.lootItem("cage"));
         System.out.println("Amount: " + inventory.getSlots()[0].getAmount()); // should be 2
-        inventory.addItemToInventory(CeLoot.lootItem("aHealingPotion"));
+        inventory.addItemToInventory(CeLootUtils.lootItem("aHealingPotion"));
         System.out.println(inventory.getSlots()[1].getItem().toString());
 
         List<CeEntity> team = new ArrayList<>();
@@ -34,16 +34,16 @@ public class TestItems {
 
         System.out.println(cePlayer1.getCeStats().getCurrentHitPoints());
         System.out.println(cePlayer1.getCeStats().toString());
-        cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("aGreaterHealingPotion"));
+        cePlayer1.getInventory().addItemToInventory(CeLootUtils.lootItem("aGreaterHealingPotion"));
         try {
-            cePlayer1.getInventory().useItem(CeLoot.lootItem("aGreaterHealingPotion"));
+            cePlayer1.getInventory().useItem(CeLootUtils.lootItem("aGreaterHealingPotion"));
             System.out.println(cePlayer1.getCeStats().getCurrentHitPoints());
         } catch (ItemNotInInventoryException itemNotInInventoryException) {
             itemNotInInventoryException.printStackTrace();
         }
-        cePlayer1.getInventory().addItemToInventory(CeLoot.lootItem("stickOfBeating"));
+        cePlayer1.getInventory().addItemToInventory(CeLootUtils.lootItem("stickOfBeating"));
         try {
-            cePlayer1.getInventory().setEquippedItem(CeLoot.lootItem("stickOfBeating"));
+            cePlayer1.getInventory().setEquippedItem(CeLootUtils.lootItem("stickOfBeating"));
         } catch (WrongItemException wrongItemException) {
             wrongItemException.printStackTrace();
         }

@@ -15,9 +15,6 @@ public class CeItem {
     private String description;
     private CeItemEffects effect;
 
-    public CeItem() {
-    }
-
     public void setItemFromSaveGame(JSONObject itemJson) {
         this.equipped = itemJson.getBoolean("equipped"); //TODO: needs to be in the savegame JSON
         setItem(itemJson);
@@ -34,7 +31,7 @@ public class CeItem {
         this.unique = itemJson.getBoolean("unique");
         this.type = CeItemTypes.valueOf(itemJson.getString("type"));
         this.uses = itemJson.getInt("uses");
-        this.itemBonusStats = new CeItemBonusStats(CeLoot.jsonArrayToIntArray(itemJson.getJSONArray("bonusStats")));
+        this.itemBonusStats = new CeItemBonusStats(CeLootUtils.jsonArrayToIntArray(itemJson.getJSONArray("bonusStats")));
         this.description = itemJson.getString("description");
         this.effect = new CeItemEffects(itemJson.getJSONObject("effects"));
     }

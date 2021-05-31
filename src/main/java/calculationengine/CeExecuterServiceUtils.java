@@ -4,7 +4,7 @@ import config.BattleConstants;
 
 import java.util.concurrent.*;
 
-public class CeExecuterService {
+public class CeExecuterServiceUtils {
 
     private static final ThreadPoolExecutor executorService = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
     private static final boolean debug = BattleConstants.battleDebug;
