@@ -55,8 +55,8 @@ public class CeInventoryTest {
         assertEquals(itemAmount, amountToAdd);
     }
 
-    @Test(expected = NullPointerException.class)
-    public void addNullToInventory() throws NoPlaceInInventoryException {
+    @Test(expected = IllegalArgumentException.class)
+    public void addNullToInventory() throws IllegalArgumentException, NoPlaceInInventoryException {
         ceInventory.addItemToInventory(null);
     }
 
