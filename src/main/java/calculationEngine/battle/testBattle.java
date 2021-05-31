@@ -1,17 +1,25 @@
 package calculationengine.battle;
 
 import calculationengine.CeExecuterService;
-import calculationengine.entities.*;
+import calculationengine.entities.CeAi;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeAttacks;
+import calculationengine.entities.CeBeastTypes;
+import calculationengine.entities.CeEntity;
+import calculationengine.entities.CeNature;
+import calculationengine.entities.CePlayer;
+import calculationengine.entities.CeStats;
+import calculationengine.entities.ItemNotInInventoryException;
 import calculationengine.environment.CeLoot;
 import calculationengine.environment.CeRegions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class testBattle {
+public class TestBattle {
 
     public static void main(String[] args) throws Exception {
-//        simulateAiBattle();
+        simulateAiBattle();
         simulateCatch();
         CeExecuterService.shutdownExecutor();
     }
