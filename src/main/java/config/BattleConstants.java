@@ -1,6 +1,6 @@
 package config;
 
-import calculationEngine.entities.CePlayer;
+import calculationengine.entities.CePlayer;
 
 public class BattleConstants {
 
