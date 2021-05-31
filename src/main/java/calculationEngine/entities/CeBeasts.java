@@ -1,6 +1,6 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
-import calculationEngine.environment.CeRegions;
+import calculationengine.environment.CeRegions;
 
 public enum CeBeasts {
 

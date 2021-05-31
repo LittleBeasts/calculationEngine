@@ -1,9 +1,9 @@
-package calculationEngine.battle;
+package calculationengine.battle;
 
-import calculationEngine.CeExecuterService;
-import calculationEngine.entities.*;
-import calculationEngine.environment.CeLoot;
-import calculationEngine.environment.CeRegions;
+import calculationengine.CeExecuterService;
+import calculationengine.entities.*;
+import calculationengine.environment.CeLoot;
+import calculationengine.environment.CeRegions;
 
 import java.util.ArrayList;
 import java.util.List;

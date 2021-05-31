@@ -1,9 +1,9 @@
-package calculationEngine.battle;
+package calculationengine.battle;
 
-import calculationEngine.CeExecuterService;
-import calculationEngine.entities.*;
-import calculationEngine.environment.CeItem;
-import calculationEngine.environment.CeItemTypes;
+import calculationengine.CeExecuterService;
+import calculationengine.entities.*;
+import calculationengine.environment.CeItem;
+import calculationengine.environment.CeItemTypes;
 import config.BattleConstants;
 
 import java.util.Random;

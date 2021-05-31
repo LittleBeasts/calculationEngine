@@ -1,6 +1,6 @@
-package calculationEngine.battle;
+package calculationengine.battle;
 
-import calculationEngine.environment.CeItem;
+import calculationengine.environment.CeItem;
 
 public class WrongItemException extends Exception{
     public WrongItemException(CeItem item, String expected) {

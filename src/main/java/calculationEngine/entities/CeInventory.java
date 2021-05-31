@@ -1,13 +1,13 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
-import calculationEngine.battle.WrongItemException;
-import calculationEngine.environment.CeItem;
-import calculationEngine.environment.CeItemTypes;
+import calculationengine.battle.WrongItemException;
+import calculationengine.environment.CeItem;
+import calculationengine.environment.CeItemTypes;
 
 import java.util.ArrayList;
 
-import static calculationEngine.environment.CeItemTypes.*;
-import static calculationEngine.environment.CeItemTypes.armorShoulder;
+import static calculationengine.environment.CeItemTypes.*;
+import static calculationengine.environment.CeItemTypes.armorShoulder;
 
 public class CeInventory {
 

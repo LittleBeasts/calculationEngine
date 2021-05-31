@@ -1,18 +1,18 @@
-package calculationEngine.battle;
+package calculationengine.battle;
 
-import calculationEngine.entities.CeAttack;
-import calculationEngine.entities.CeBeastTypes;
-import calculationEngine.entities.CeEntity;
-import calculationEngine.entities.CePlayer;
-import calculationEngine.environment.CeItem;
-import config.GlobalConfig;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeBeastTypes;
+import calculationengine.entities.CeEntity;
+import calculationengine.entities.CePlayer;
+import calculationengine.environment.CeItem;
+import config.GlobalConstants;
 
 import java.util.Random;
 
 public class CeCatching {
     private static Random random = new Random();
     private static String debugInfo;
-    private final static boolean bDebug = GlobalConfig.DEBUG_CONSOLE_OUT;
+    private final static boolean bDebug = GlobalConstants.DEBUG_CONSOLE_OUT;
 
     public static boolean isCaught(CePlayer player, CeEntity beast, CeItem cage) {
 

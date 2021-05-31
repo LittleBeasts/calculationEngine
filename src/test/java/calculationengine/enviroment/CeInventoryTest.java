@@ -1,12 +1,12 @@
-package calculationEngine.enviroment;
+package calculationengine.enviroment;
 
-import calculationEngine.entities.*;
-import calculationEngine.environment.CeItem;
+import calculationengine.entities.*;
+import calculationengine.environment.CeItem;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import static config.LootConfig.itemList;
+import static config.LootConstants.itemList;
 import static org.junit.Assert.*;
 
 public class CeInventoryTest {

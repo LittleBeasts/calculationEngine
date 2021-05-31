@@ -1,8 +1,8 @@
-package calculationEngine.environment;
+package calculationengine.environment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import static config.LootConfig.itemList;
+import static config.LootConstants.itemList;
 
 public class CeLoot {
 

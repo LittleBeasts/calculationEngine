@@ -1,4 +1,4 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
 public enum CeAttacks {
 

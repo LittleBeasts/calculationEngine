@@ -1,4 +1,4 @@
-package calculationEngine.environment;
+package calculationengine.environment;
 
 public enum CeItemTypes {
 

@@ -1,15 +1,15 @@
-package calculationEngine.battle;
+package calculationengine.battle;
 
-import calculationEngine.entities.CeAttack;
-import calculationEngine.entities.CeEntity;
-import config.GlobalConfig;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeEntity;
+import config.GlobalConstants;
 
 import java.util.Random;
 
 public class CeDamage {
     private static Random random = new Random();
     private static String debugInfo;
-    private final static boolean bDebug = GlobalConfig.DEBUG_CONSOLE_OUT;
+    private final static boolean bDebug = GlobalConstants.DEBUG_CONSOLE_OUT;
 
     public static int calculateDamage(CeEntity attacker, CeEntity defender, CeAttack ceAttack) {
         //roll to d50 to get a quasi normal distribution

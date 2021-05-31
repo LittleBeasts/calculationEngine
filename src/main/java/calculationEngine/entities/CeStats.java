@@ -1,6 +1,6 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
-import calculationEngine.environment.CeItemBonusStats;
+import calculationengine.environment.CeItemBonusStats;
 import config.AiConstants;
 import config.EntityConstants;
 

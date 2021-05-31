@@ -1,6 +1,4 @@
-package calculationEngine.entities;
-
-import calculationEngine.environment.CeItem;
+package calculationengine.entities;
 
 public class NoPlaceInInventoryException extends Exception{
     public NoPlaceInInventoryException() {

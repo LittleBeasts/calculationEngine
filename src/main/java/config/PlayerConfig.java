@@ -1,7 +1,7 @@
 package config;
 
-import calculationEngine.entities.CeAttack;
-import calculationEngine.entities.CeAttacks;
+import calculationengine.entities.CeAttack;
+import calculationengine.entities.CeAttacks;
 
 public class PlayerConfig {
 

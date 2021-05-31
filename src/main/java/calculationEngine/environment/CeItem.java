@@ -1,6 +1,6 @@
-package calculationEngine.environment;
+package calculationengine.environment;
 
-import calculationEngine.entities.CeStats;
+import calculationengine.entities.CeStats;
 import org.json.JSONObject;
 
 public class CeItem {

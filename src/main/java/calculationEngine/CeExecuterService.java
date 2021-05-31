@@ -1,4 +1,4 @@
-package calculationEngine;
+package calculationengine;
 
 import config.BattleConstants;
 

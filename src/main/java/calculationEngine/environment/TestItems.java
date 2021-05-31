@@ -1,7 +1,7 @@
-package calculationEngine.environment;
+package calculationengine.environment;
 
-import calculationEngine.battle.WrongItemException;
-import calculationEngine.entities.*;
+import calculationengine.battle.WrongItemException;
+import calculationengine.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;

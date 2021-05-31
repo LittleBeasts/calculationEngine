@@ -1,6 +1,6 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
-import calculationEngine.environment.CeItem;
+import calculationengine.environment.CeItem;
 
 public class ItemNotInInventoryException extends Exception {
     public ItemNotInInventoryException(CeItem item){

@@ -1,7 +1,7 @@
-package calculationEngine.entities;
+package calculationengine.entities;
 
-import calculationEngine.battle.CeBattle;
-import calculationEngine.environment.CeRegions;
+import calculationengine.battle.CeBattle;
+import calculationengine.environment.CeRegions;
 import config.BattleConstants;
 
 import java.util.ArrayList;
